@@ -10,7 +10,7 @@ Microsoft Fabric Lakehouse의 테이블은 Apache Spark에 대한 오픈 소스 
 
 이 연습을 완료하는 데 약 **40** 분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -18,18 +18,18 @@ Microsoft Fabric Lakehouse의 테이블은 Apache Spark에 대한 오픈 소스 
 
 1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com)의 Synapse `https://app.fabric.microsoft.com`데이터 엔지니어** 선택합니다**.
 2. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-3. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 라이선스 모드를 선택합니다.
+3. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 4. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 ## Lakehouse 만들기 및 데이터 업로드
 
 이제 작업 영역이 있으므로 분석하려는 데이터에 대한 데이터 레이크하우스를 만들어야 합니다.
 
-1. **Synapse 데이터 엔지니어** 홈페이지에서 원하는 이름으로 새 **Lakehouse**를 만듭니다.
+1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
 
-    1 분 정도 후, 새로운 빈 레이크 하우스. 분석을 위해 데이터 레이크하우스에 일부 데이터를 수집해야 합니다. 이 작업을 수행하는 방법에는 여러 가지가 있지만, 이 연습에서는 텍스트 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 레이크하우스에 업로드하기만 하면 됩니다.
+    1 분 정도 후, 새로운 빈 레이크 하우스. 분석을 위해 일부 데이터를 데이터 레이크하우스에 수집해야 합니다. 이 작업을 수행하는 방법에는 여러 가지가 있지만, 이 연습에서는 텍스트 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 레이크하우스에 업로드하기만 하면 됩니다.
 
 1. 이 연습의 [`https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv`데이터 파일을](https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv) 다운로드하여 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 products.csv** 저장**합니다.
 
@@ -44,7 +44,7 @@ Microsoft Fabric Lakehouse의 테이블은 Apache Spark에 대한 오픈 소스 
 
 1. 데이터 레이크에서 제품 폴더의 내용을 보는 동안 홈**페이지의 **전자 필기장 열기 메뉴에서 새 전자** 필기장을** 선택합니다**.** **** 
 
-    몇 초 후에 단일 *셀* 이 포함된 새 Notebook이 열립니다. Notebook은 코드 또는 markdown *(서식이 지정된 텍스트)을 포함*할 수 있는 하나 이상의 셀로 구성*됩니다.*
+    몇 초 후에 단일 *셀*이 포함된 새 Notebook이 열립니다. Notebook은 *코드* 또는 *markdown*(서식이 지정된 텍스트)을 포함할 수 있는 하나 이상의 셀로 구성됩니다.
 
 2. 간단한 코드가 포함된 Notebook의 기존 셀을 선택한 다음 오른쪽 위에 있는 해당 &#128465;** (*삭제*) 아이콘을 사용하여 **제거합니다. 이 코드는 필요하지 않습니다.
 3. 왼쪽의 **Lakehouse 탐색기** 창에서 파일을** 확장하고 **제품을** 선택하여 **이전에 업로드한 products.csv** 파일을 보여 주는 **새 창을 표시합니다.
@@ -65,7 +65,7 @@ Microsoft Fabric Lakehouse의 테이블은 Apache Spark에 대한 오픈 소스 
 
     > **참고**: 이 Notebook에서 Spark 코드를 처음 실행했으므로 Spark 세션을 시작해야 합니다. 즉, 첫 번째 실행을 완료하는 데 1분 정도 걸릴 수 있습니다. 후속 실행은 더 빨라질 것입니다.
 
-6. 셀 명령이 완료되면 셀 아래의 출력을 검토합니다. 이 출력은 다음과 유사합니다.
+6. 셀 명령이 완료되면 셀 아래의 출력을 검토합니다. 다음과 유사한 출력을 확인할 수 있습니다.
 
     | 색인 | ProductID | ProductName | 범주 | ListPrice |
     | -- | -- | -- | -- | -- |
@@ -84,7 +84,7 @@ Microsoft Fabric Lakehouse의 테이블은 Apache Spark에 대한 오픈 소스 
 
 1. 첫 번째 코드 셀에서 반환된 결과 아래에서 + 코드** 아이콘을 사용하여 **새 코드 셀이 없는 경우 새 코드 셀을 추가합니다.
 
-    > **팁**: + 코드** 아이콘을 **보려면 마우스를 현재 셀에서 출력의 바로 아래와 왼쪽으로 이동합니다. 또는 메뉴 모음의 편집 탭에서 **+ 코드 셀** 추가를 선택합니다**.**
+    > **팁**: **+ 코드** 아이콘을 보려면 마우스를 현재 셀의 출력 바로 아래 왼쪽으로 이동합니다. 아니면 메뉴 모음의 **편집** 탭에서 **+ 코드 셀 추가**를 선택합니다.
 
 2. 새 셀에 다음 코드를 입력하고 실행합니다.
 

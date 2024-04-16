@@ -12,7 +12,7 @@ Microsoft Fabric에서 Lakehouse는 오픈 소스 Delta Lake 테이블 형식을
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -23,13 +23,13 @@ Microsoft Fabric에서 Lakehouse는 오픈 소스 Delta Lake 테이블 형식을
 1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 **고급** 섹션에서 라이선스 모드를 선택합니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 ## 레이크하우스 만들기
 
 이제 작업 영역이 있으므로 데이터 파일에 대한 데이터 레이크하우스를 만들어야 합니다.
 
-1. **Synapse 데이터 엔지니어** 홈페이지에서 원하는 이름으로 새 **Lakehouse**를 만듭니다.
+1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
 
     1분 정도 지나면 새 레이크하우스가 만들어집니다.
 

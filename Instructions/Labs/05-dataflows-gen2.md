@@ -10,24 +10,24 @@ Microsoft Fabric에서 Gen2(데이터 흐름)는 다양한 데이터 원본에 �
 
 이 랩은 데이터 흐름(Gen2)의 다양한 요소를 도입하고 엔터프라이즈에 존재할 수 있는 복잡한 솔루션을 만들지 않도록 설계되었습니다. 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. Microsoft Fabric 홈페이지에서 [Synapse 데이터 엔지니어 선택합니다****.](https://app.fabric.microsoft.com)
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com)에서 **Synapse 데이터 엔지니어링**을 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 라이선스 모드를 선택합니다.
+1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 ## 레이크하우스 만들기
 
 이제 작업 영역이 있으므로 데이터를 수집할 데이터 레이크하우스를 만들어야 합니다.
 
-1. **Synapse 데이터 엔지니어** 홈페이지에서 원하는 이름으로 새 **Lakehouse**를 만듭니다.
+1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
 
     1분 정도 지나면 빈 레이크하우스가 새로 만들어집니다.
 

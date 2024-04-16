@@ -9,7 +9,7 @@ Eventstream은 코드가 없는 환경을 사용하여 실시간 이벤트를 �
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -17,7 +17,7 @@ Eventstream은 코드가 없는 환경을 사용하여 실시간 이벤트를 �
 
 1. Microsoft Fabric에 로그인[하고 Power BI**를 선택합니다**.`https://app.fabric.microsoft.com`](https://app.fabric.microsoft.com)
 2. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-3. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 라이선스 모드를 선택합니다.
+3. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 4. 새 작업 영역이 열리면 다음과 같이 비어 있어야 합니다.
 
    ![Power BI의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
