@@ -15,7 +15,7 @@ lab:
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 시작하기
 

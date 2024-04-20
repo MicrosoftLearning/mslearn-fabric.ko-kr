@@ -10,7 +10,7 @@ Microsoft Fabric은 KQL(Kusto 쿼리 언어)을 사용하여 데이터를 저장
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -18,10 +18,10 @@ Microsoft Fabric은 KQL(Kusto 쿼리 언어)을 사용하여 데이터를 저장
 
 1. Microsoft Fabric 홈페이지[에서 ](https://app.fabric.microsoft.com)Synapse 실시간 분석을** 선택합니다**.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 라이선스 모드를 선택합니다.
+1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 ## KQL 데이터베이스용 파일 다운로드
 

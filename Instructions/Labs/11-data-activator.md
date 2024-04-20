@@ -10,7 +10,7 @@ Microsoft Fabric의 Data Activator는 데이터에서 발생하는 작업에 따
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -18,10 +18,10 @@ Microsoft Fabric의 Data Activator는 데이터에서 발생하는 작업에 따
 
 1. Microsoft Fabric 홈페이지[에서 ](https://app.fabric.microsoft.com)데이터 활성화기를** 선택합니다**.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 라이선스 모드를 선택합니다.
+1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 이 랩에서는 패브릭의 데이터 활성화기를 사용하여 반사를 *만듭니다*. 데이터 활성화기는 데이터 활성화자의 기능을 탐색하는 데 사용할 수 있는 샘플 데이터 세트를 편리하게 제공합니다. 이 샘플 데이터를 사용하여 일부 실시간 데이터를 분석하고 조건이 충족되면 이메일을 보내는 트리거를 만드는 반사*를 만듭니*다.
 

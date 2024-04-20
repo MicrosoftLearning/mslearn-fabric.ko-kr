@@ -12,7 +12,7 @@ Microsoft Fabric에서 Lakehouse는 오픈 소스 Delta Lake 테이블 형식을
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
 
-> **참고**: 이 연습을 완료하려면 Microsoft Fabric 평가판[이 필요합니다](https://learn.microsoft.com/fabric/get-started/fabric-trial).
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
 ## 작업 영역 만들기
 
@@ -23,13 +23,13 @@ Microsoft Fabric에서 Lakehouse는 오픈 소스 Delta Lake 테이블 형식을
 1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 **고급** 섹션에서 라이선스 모드를 선택합니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Fabric의 빈 작업 영역 스크린샷](./Images/new-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
 ## 레이크하우스 만들기
 
 이제 작업 영역이 있으므로 데이터 파일에 대한 데이터 레이크하우스를 만들어야 합니다.
 
-1. **Synapse 데이터 엔지니어** 홈페이지에서 원하는 이름으로 새 **Lakehouse**를 만듭니다.
+1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
 
     1분 정도 지나면 새 레이크하우스가 만들어집니다.
 
@@ -43,7 +43,7 @@ Microsoft Fabric에서 Lakehouse는 오픈 소스 Delta Lake 테이블 형식을
 
 ## 파일 업로드하기
 
-Fabric은 파워 쿼리를 기반으로 시각적 도구를 사용하여 정의할 수 있는 데이터 외부 원본 및 데이터 흐름(Gen 2)을 복사하는 파이프라인에 대한 기본 제공 지원을 포함하여 레이크하우스에 데이터를 로드하는 여러 가지 방법을 제공합니다. 그러나 소량의 데이터를 수집하는 가장 간단한 방법 중 하나는 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에서 파일 또는 폴더를 업로드하는 것입니다.
+패브릭은 파워 쿼리를 기반으로 시각적 도구를 사용하여 정의할 수 있는 외부 원본 및 데이터 흐름(Gen 2)에서 데이터를 복사하는 파이프라인에 대한 기본 제공 지원을 포함하여 레이크하우스에 데이터를 로드하는 여러 가지 방법을 제공합니다. 그러나 소량의 데이터를 수집하는 가장 간단한 방법 중 하나는 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에서 파일 또는 폴더를 업로드하는 것입니다.
 
 1. [sales.csv](https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv) 파일을 `https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv`다운로드하여 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 sales.csv** 저장**합니다.
 
@@ -165,7 +165,7 @@ Lakehouse의 테이블은 Power BI를 사용하여 보고하기 위한 기본 �
 
 이 연습에서는 Lakehouse를 만들고 데이터를 가져왔습니다. Lakehouse가 OneLake 데이터 저장소에 저장된 파일과 테이블로 구성된 방법을 살펴보았습니다. 관리되는 테이블은 SQL을 사용하여 쿼리할 수 있으며 데이터 시각화를 지원하기 위한 기본 의미 체계 모델에 포함됩니다.
 
-레이크하우스 탐색을 완료한 경우 이 연습에 대해 만든 작업 영역을 삭제할 수 있습니다.
+레이크하우스 탐색을 마쳤으면 이 연습을 위해 만든 작업 영역을 삭제할 수 있습니다.
 
 1. 왼쪽 막대에서 작업 영역의 아이콘을 선택하여 포함된 모든 항목을 봅니다.
 2. 도구 모음의 **...** 메뉴에서 **작업 영역 설정**을 선택합니다.
