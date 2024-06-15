@@ -1,43 +1,43 @@
 ---
 lab:
-    title: 'Secure data in a data warehouse'
-    module: 'Get started with data warehouses in Microsoft Fabric'
+  title: 데이터 웨어하우스의 데이터 보안
+  module: Get started with data warehouses in Microsoft Fabric
 ---
 
-# Secure data in a data warehouse
+# 데이터 웨어하우스의 데이터 보안
 
-Microsoft Fabric permissions and granular SQL permissions work together to govern Warehouse access and user permissions. In this exercise, you will secure data using granular permissions, column-level security, row-level security and dynamic data masking.
+Microsoft Fabric 권한과 세분화된 SQL 권한이 함께 작동하여 웨어하우스 액세스 및 사용자 권한을 제어합니다. 이 연습에서는 세분화된 권한, 열 수준 보안, 행 수준 보안 및 동적 데이터 마스킹을 사용하여 데이터를 보호합니다.
 
-This lab will take approximately **45** minutes to complete.
+이 랩을 완료하는 데 약 **45**분이 걸립니다.
 
-> **Note**: You need a [Microsoft Fabric trial](https://learn.microsoft.com/fabric/get-started/fabric-trial) to complete this exercise.
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
-## Create a workspace
+## 작업 영역 만들기
 
-Before working with data in Fabric, create a workspace with the Fabric trial enabled.
+패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. On the [Microsoft Fabric home page](https://app.fabric.microsoft.com), select **Synapse Data Warehouse**.
-1. In the menu bar on the left, select **Workspaces** (the icon looks similar to &#128455;).
-1. Create a new workspace with a name of your choice, selecting a licensing mode that includes Fabric capacity (*Trial*, *Premium*, or *Fabric*).
-1. When your new workspace opens, it should be empty.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com)에서 **Synapse 데이터 웨어하우스**를 선택합니다.
+1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
+1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
+1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
-    ![Screenshot of an empty workspace in Fabric.](./Images/new-empty-workspace.png)
+    ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-empty-workspace.png)
 
-## Create a data warehouse
+## 데이터 웨어하우스 만들기
 
-Next, create a data warehouse in the workspace you just created. The Synapse Data Warehouse home page includes a shortcut to create a new warehouse:
+다음으로 방금 만든 작업 영역에 데이터 웨어하우스를 만듭니다. Synapse Data Warehouse 홈페이지에는 새 웨어하우스를 만들기 위한 바로 가기가 포함되어 있습니다.
 
-1. On the **Synapse Data Warehouse** home page, create a new **Warehouse** with a name of your choice.
+1. **Synapse Data Warehouse** 홈페이지에서 원하는 이름으로 새 **웨어하우스**를 만듭니다.
 
-    After a minute or so, a new warehouse will be created:
+    1분 정도 지나면 새 웨어하우스가 만들어집니다.
 
-    ![Screenshot of a new warehouse.](./Images/new-empty-data-warehouse.png)
+    ![새 웨어하우스의 스크린샷.](./Images/new-empty-data-warehouse.png)
 
-## Apply dynamic data masking to columns in a table
+## 테이블의 열에 동적 데이터 마스킹 적용
 
-Dynamic data masking rules are applied on individual columns at the table level so all queries are affected by the masking. Users who do no have explicit permissions to view confidential data will see masked values in query results while users with explict permission to view the data will see it unobscured. There are four types of masks: default, email, random and custom string. In this exercise, you will apply a default mask, an email mask, and a custom string mask.
+동적 데이터 마스킹 규칙은 테이블 수준의 개별 열에 적용되므로 모든 쿼리가 마스킹의 영향을 받습니다. 기밀 데이터를 볼 수 있는 명시적 권한이 없는 사용자는 쿼리 결과에서 마스킹된 값을 볼 수 있는 반면, 데이터를 볼 수 있는 명시적 권한이 있는 사용자는 해당 값을 가리지 않은 상태로 볼 수 있습니다. 마스크에는 기본, 이메일, 임의 및 사용자 지정 문자열의 네 가지 형식이 있습니다. 이 연습에서는 기본 마스크, 이메일 마스크 및 사용자 지정 문자열 마스크를 적용합니다.
 
-1. In your warehouse, select the **T-SQL** tile, and replace the default SQL code with the following T-SQL statements to create a table and to insert and view data.  The masks applied in the `CREATE TABLE` statement do the following:
+1. 웨어하우스에서 **T-SQL** 타일을 선택하고 기본 SQL 코드를 다음 T-SQL 문으로 바꿔 테이블을 만들고 데이터를 삽입하고 봅니다.  `CREATE TABLE` 문에 적용된 마스크는 다음을 수행합니다.
 
     ```sql
     CREATE TABLE dbo.Customer
@@ -64,42 +64,42 @@ Dynamic data masking rules are applied on individual columns at the table level 
     GO
     ```
 
-2. Use the **&#9655; Run** button to run the SQL script, which creates a new table named **Customer** in the **dbo** schema of the data warehouse.
+2. **&#9655; 실행** 단추를 사용하여 데이터 웨어하우스의 **dbo** 스키마에 **Customer**라는 새 테이블을 만드는 SQL 스크립트를 실행합니다.
 
-3. Then, in the **Explorer** pane, expand **Schemas** > **dbo** > **Tables** and verify that the **Customer** table has been created. The SELECT statement returns unmasked data because you are connected as workspace admin which can see unmasked data.
+3. 그런 다음 **탐색기** 창에서 **스키마** > **dbo** > **테이블**을 확장하고 **고객** 테이블이 만들어졌는지 확인합니다. 마스킹 해제된 데이터를 볼 수 있는 작업 영역 관리자로 연결되어 있으므로 SELECT 문은 마스킹 해제된 데이터를 반환합니다.
 
-4. Connect as a test user that's a member of the **viewer** workspace role and run the following T-SQL statement.
+4. **뷰어** 작업 영역 역할의 멤버인 테스트 사용자로 연결하고 다음 T-SQL 문을 실행합니다.
 
     ```sql
     SELECT * FROM dbo.Customer;
     GO
     ```
 
-    This user has not been granted UNMASK permission so data returned for the FirstName, Phone and Email columns is masked because those columns were defined with a mask in the `CREATE TABLE` statement.
+    이 사용자에게는 UNMASK 권한이 부여되지 않았으므로 FirstName, Phone 및 Email 열에 대해 반환된 데이터는 해당 열이 `CREATE TABLE` 문에서 마스크로 정의되었기 때문에 마스킹됩니다.
 
-5. Reconnect as workspace admin and run the following T-SQL to unmask data for the test user.
+5. 작업 영역 관리자로 다시 연결하고 다음 T-SQL을 실행하여 테스트 사용자의 데이터를 마스킹 해제합니다.
 
     ```sql
     GRANT UNMASK ON dbo.Customer TO [testUser@testdomain.com];
     GO
     ```
 
-6. Connect as the test user again and run the following T-SQL statement.
+6. 다시 테스트 사용자로 연결하고 다음 T-SQL 문을 실행합니다.
 
     ```sql
     SELECT * FROM dbo.Customer;
     GO
     ```
 
-    The data is returned unmasked because the test user has been granted the `UNMASK` permission.
+    테스트 사용자에게 `UNMASK` 권한이 부여되었기 때문에 데이터는 마스킹 해제된 상태로 반환됩니다.
 
-## Apply row-level security
+## 행 수준 보안 적용
 
-Row-level security (RLS) can be used to limit access to rows based on the identity, or role of the user executing a query.  In this exercise, you will restrict access to rows by creating a security policy and a security predicate defined as an inline table-valued function.
+RLS(행 수준 보안)를 사용하면 쿼리를 실행하는 사용자의 ID 또는 역할을 기반으로 행에 대한 액세스를 제한할 수 있습니다.  이 연습에서는 인라인 테이블 반환 함수로 정의된 보안 정책과 보안 조건자를 만들어 행에 대한 액세스를 제한합니다.
 
-1. In the warehouse you created in the last exercise, select the **New SQL Query** dropdown.  Under the dropdown under the header **Blank**, select **New SQL Query**.
+1. 마지막 연습에서 만든 웨어하우스에서 **새 SQL 쿼리** 드롭다운을 선택합니다.  **공백** 헤더 아래 드롭다운에서 **새 SQL 쿼리**를 선택합니다.
 
-2. Create a table and insert data into it. So that you can test row-level security in a later step, replace 'testuser1@mydomain.com' with a user name from your environment and replace 'testuser2@mydomain.com' with your user name.
+2. 테이블을 만들고 데이터를 삽입합니다. 이후 단계에서 행 수준 보안을 테스트할 수 있도록 'testuser1@mydomain.com'을 환경의 사용자 이름으로 바꾸고 'testuser2@mydomain.com'를 사용자 이름으로 바꿉니다.
     ```sql
     CREATE TABLE dbo.Sales  
     (  
@@ -124,10 +124,10 @@ Row-level security (RLS) can be used to limit access to rows based on the identi
     GO
     ```
 
-3. Use the **&#9655; Run** button to run the SQL script, which creates a new table named **Sales** in the **dbo** schema of the data warehouse.
+3. **&#9655; 실행** 단추를 사용하여 데이터 웨어하우스의 **dbo** 스키마에 **Sales**라는 새 테이블을 만드는 SQL 스크립트를 실행합니다.
 
-4. Then, in the **Explorer** pane, expand **Schemas** > **dbo** > **Tables** and verify that the **Sales** table has been created.
-5. Create a new schema, a security predicate defined as a function, and a security policy.  
+4. 그런 다음 **탐색기** 창에서 **스키마** > **dbo** > **테이블**을 확장하고 **Sales** 테이블이 만들어졌는지 확인합니다.
+5. 새로운 스키마, 함수로 정의된 보안 조건자, 보안 정책을 만듭니다.  
 
     ```sql
     --Create a separate schema to hold the row-level security objects (the predicate function and the security policy)
@@ -191,15 +191,15 @@ Column-level security allows you to designate which users can access specific co
     GO
  ```
 
-3. Deny permission to view a column in the table. The Transact SQL below will prevent '<testuser@mydomain.com>' from seeing the CreditCard column in the Orders table. In the `DENY` statement below, replace testuser@mydomain.com with a user name in your system who has Viewer permissions on the workspace.
+3. 테이블의 열을 볼 수 있는 권한을 거부합니다. 아래 Transact SQL을 사용하면 '<testuser@mydomain.com>'이 Orders 테이블의 CreditCard 열을 볼 수 없습니다. 아래 `DENY` 문에서 testuser@mydomain.com을 작업 영역에 대한 뷰어 권한이 있는 시스템의 사용자 이름으로 바꿉니다.
 
  ```sql
 DENY SELECT ON dbo.Orders (CreditCard) TO [testuser@mydomain.com];
  ```
 
-4. Test column-level security by logging in to Fabric as the user you denied select permissions to.
+4. 선택 권한을 거부한 사용자로 Fabric에 로그인하여 열 수준 보안을 테스트합니다.
 
-5. Query the Orders table to confirm that column-level security works as expected. The following query will return only the OrderID and CustomerID columns, not the CrediteCard column.  
+5. Orders 테이블을 쿼리하여 열 수준 보안이 예상대로 작동하는지 확인합니다. 다음 쿼리는 CrediteCard 열이 아닌 OrderID 및 CustomerID 열만 반환합니다.  
 
     ```sql
     SELECT * FROM dbo.Orders;
@@ -210,13 +210,13 @@ DENY SELECT ON dbo.Orders (CreditCard) TO [testuser@mydomain.com];
     SELECT OrderID, CustomerID from dbo.Orders
     ```
 
-## Configure SQL granular permissions using T-SQL
+## T-SQL을 사용하여 SQL 세분화된 권한 구성
 
-Fabric warehouse has a permissions model that allows you to control access to data at the workspace level, and at the item level. When you need more granular control of what users can do with securables in a Fabric warehouse, you can use the standard SQL data control language (DCL) commands `GRANT`,`DENY` and `REVOKE`. In this exercise, you will create objects, secure them using `GRANT`, and `DENY`, and then run queries to view the effect of applying granular permissions.
+Fabric 웨어하우스에는 작업 영역 수준과 항목 수준에서 데이터에 대한 액세스를 제어할 수 있는 권한 모델이 있습니다. 사용자가 Fabric 웨어하우스에서 보안 개체로 수행할 수 있는 작업을 보다 세밀하게 제어해야 하는 경우 표준 SQL DCL(데이터 컨트롤 언어) 명령 `GRANT`,`DENY` 및 `REVOKE`을 사용할 수 있습니다. 이 연습에서는 개체를 만들고 `GRANT` 및 `DENY`를 사용하여 보안을 설정한 다음 쿼리를 실행하여 세부적인 권한 적용 효과를 확인합니다.
 
-1. In the warehouse you created in the earlier exercise, select the **New SQL Query** dropdown.  Under the header **Blank**, select **New SQL Query**.  
+1. 이전 연습에서 만든 웨어하우스에서 **새 SQL 쿼리** 드롭다운을 선택합니다.  **공백** 헤더 아래에서 **새 SQL 쿼리**를 선택합니다.  
 
-2. Create a stored procedure and a table.
+2. 저장 프로시저와 테이블을 만듭니다.
 
  ```
     CREATE PROCEDURE dbo.sp_PrintMessage
@@ -244,7 +244,7 @@ Fabric warehouse has a permissions model that allows you to control access to da
     GO
   ```
 
-3. Next `DENY SELECT` permissions on the table to a user with who is a member of the Worksapce Viewer role and `GRANT EXECUTE` on the procedure to the same user.
+3. 테이블에 대한 다음 `DENY SELECT` 권한은 Worksapce 뷰어 역할의 멤버인 사용자에게 부여되고 프로시저에 대한 `GRANT EXECUTE` 권한은 동일한 사용자에게 부여됩니다.
 
  ```sql
     DENY SELECT on dbo.Parts to [testuser@mydomain.com];
@@ -255,7 +255,7 @@ Fabric warehouse has a permissions model that allows you to control access to da
 
  ```
 
-4. Log in to Fabric as the user you specified in the DENY and GRANT statements above in place of [testuser@mydomain.com]. Then test the granular permissions you just applied by executing the stored procedure and querying the table.  
+4. [testuser@mydomain.com] 대신 위의 DENY 및 GRANT 문에 지정한 사용자로 Fabric에 로그인합니다. 그런 다음 저장 프로시저를 실행하고 테이블을 쿼리하여 방금 적용한 세부적인 권한을 테스트합니다.  
 
  ```sql
     EXEC dbo.sp_PrintMessage;
@@ -264,10 +264,10 @@ Fabric warehouse has a permissions model that allows you to control access to da
     SELECT * FROM dbo.Parts
  ```
 
-## Clean up resources
+## 리소스 정리
 
-In this exercise, you have applied dynamic data masking to columns in a table, applied row-level security, implemented column-level security and configured SQL granular permissions using T-SQL.
+이 연습에서는 테이블의 열에 동적 데이터 마스킹을 적용하고, 행 수준 보안을 적용하고, 열 수준 보안을 구현하고, T-SQL을 사용하여 SQL 세분화된 권한을 구성했습니다.
 
-1. In the bar on the left, select the icon for your workspace to view all of the items it contains.
-2. In the **...** menu on the toolbar, select **Workspace settings**.
-3. In the **General** section, select **Remove this workspace**.
+1. 왼쪽 막대에서 작업 영역의 아이콘을 선택하여 포함된 모든 항목을 봅니다.
+2. 도구 모음의 **...** 메뉴에서 **작업 영역 설정**을 선택합니다.
+3. **일반** 섹션에서 **이 작업 영역 제거**를 선택합니다.
