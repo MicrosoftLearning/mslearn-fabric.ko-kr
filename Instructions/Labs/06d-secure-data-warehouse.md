@@ -128,7 +128,7 @@ RLS(행 수준 보안)를 사용하면 쿼리를 실행하는 사용자의 ID �
     GO
     
     /*Create the security predicate defined as an inline table-valued function.
-    A predicate evalutes to true (1) or false (0). This security predicate returns 1,
+    A predicate evaluates to true (1) or false (0). This security predicate returns 1,
     meaning a row is accessible, when a row in the SalesRep column is the same as the user
     executing the query.*/
 
