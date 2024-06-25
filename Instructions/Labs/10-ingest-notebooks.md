@@ -39,7 +39,7 @@ lab:
 
 1. **파일**에서 **[...]** 을 선택하여 **RawData**라고 명명된 **새 하위 폴더**를 만듭니다.
 
-1. 레이크하우스 내의 레이크하우스 탐색기에서 **파일 > ... > 속성**을 선택합니다.
+1. 레이크하우스 내의 레이크하우스 탐색기에서 **RawData > ... > 속성**을 선택합니다.
 
 1. 나중에 사용할 수 있도록 **RawData** 폴더의 **ABFS 경로**를 빈 메모장에 복사합니다. `abfss://{workspace_name}@onelake.dfs.fabric.microsoft.com/{lakehouse_name}.Lakehouse/Files/{folder_name}/{file_name}`과(와) 유사하게 표시됩니다.
 
