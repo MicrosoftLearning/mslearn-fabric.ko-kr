@@ -143,42 +143,6 @@ lab:
 
 이제 성공적으로 외부 데이터에 연결하고, parquet 파일에 쓰고, 데이터를 DataFrame에 로드하고, 데이터를 변환하고, 델타 테이블에 로드했습니다.
 
-## Delta 테이블 쓰기 최적화
-
-아마도 조직의 빅 데이터를 사용하고 이에 따라 데이터 수집에 Fabric Notebook을 선택했을 것이므로 데이터에 대한 수집 및 읽기를 최적화하는 방법 또한 살펴보겠습니다. 먼저 쓰기 최적화가 포함된 델타 테이블에 변환하고 쓰는 단계를 반복해 보겠습니다.
-
-1. 새 코드 셀을 만들고 다음 코드를 삽입합니다.
-
-    ```python
-    from pyspark.sql.functions import col, to_timestamp, current_timestamp, year, month
- 
-    # Read the parquet data from the specified path
-    raw_df = spark.read.parquet(output_parquet_path)    
-
-    # Add dataload_datetime column with current timestamp
-    opt_df = raw_df.withColumn("dataload_datetime", current_timestamp())
-    
-    # Filter columns to exclude any NULL values in storeAndFwdFlag
-    opt_df = opt_df.filter(opt_df["storeAndFwdFlag"].isNotNull())
-    
-    # Enable V-Order
-    spark.conf.set("spark.sql.parquet.vorder.enabled", "true")
-    
-    # Enable automatic Delta optimized write
-    spark.conf.set("spark.microsoft.delta.optimizeWrite.enabled", "true")
-    
-    # Load the filtered data into a Delta table
-    table_name = "yellow_taxi_opt"  # New table name
-    opt_df.write.format("delta").mode("append").saveAsTable(table_name)
-    
-    # Display results
-    display(opt_df.limit(1))
-    ```
-
-1. 최적화 코드 이전과 동일한 결과가 나왔는지 확인합니다.
-
-이제 두 코드 블록에 대한 실행 시간을 기록해 둡니다. 시간은 다르겠지만 최적화된 코드를 통한 명확한 성능 향상을 확인할 수 있습니다.
-
 ## SQL 쿼리를 사용하여 델타 테이블 데이터 분석
 
 이 랩은 데이터 수집에 중점을 두어 *추출, 변환, 로드* 프로세스를 설명하지만, 데이터를 미리 보는 것도 중요합니다.
@@ -223,7 +187,7 @@ lab:
 
 ## 리소스 정리
 
-이 연습에서는 Fabric에서 PySpark와 함께 Notebook을 사용하여 데이터를 로드하고 Parquet에 저장했습니다. 그런 다음, Parquet 파일을 사용하여 추가로 데이터를 변환하고 델타 테이블 쓰기를 최적화했습니다. 마지막으로 SQL을 사용하여 델타 테이블을 쿼리했습니다.
+이 연습에서는 Fabric에서 PySpark와 함께 Notebook을 사용하여 데이터를 로드하고 Parquet에 저장했습니다. 그런 다음, Parquet 파일을 사용하여 추가로 데이터를 변환했습니다. 마지막으로 SQL을 사용하여 델타 테이블을 쿼리했습니다.
 
 탐색을 마치면 이 연습에서 만든 작업 영역을 삭제해도 됩니다.
 

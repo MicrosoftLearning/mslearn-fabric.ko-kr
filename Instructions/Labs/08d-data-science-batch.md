@@ -167,7 +167,7 @@ lab:
 
    # Save the data in a delta table
    table_name = "diabetes_test"
-   df.write.format("delta").mode("overwrite").save(f"Tables/{table_name}")
+   df.write.format("delta").mode("overwrite").saveAsTable(table_name)
    print(f"Spark dataframe saved to delta table: {table_name}")
     ```
 
@@ -196,7 +196,7 @@ lab:
    df_test = model.transform(df)
 
    # Save the results (the original features PLUS the prediction)
-   df_test.write.format('delta').mode("overwrite").option("mergeSchema", "true").save(f"Tables/{table_name}")
+   df_test.write.format('delta').mode("overwrite").option("mergeSchema", "true").saveAsTable(table_name)
     ```
 
 1. 코드가 완료되면 **레이크하우스 탐색기** 창의 **diabetes_test** 테이블 옆에 있는 **...** 을 선택한 다음 **새로 고침**을 선택합니다. **예측**이라는 새 필드가 추가되었습니다.

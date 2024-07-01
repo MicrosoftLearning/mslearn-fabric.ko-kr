@@ -34,11 +34,16 @@ Microsoft Fabric은 KQL(Kusto 쿼리 언어)을 사용하여 데이터를 저장
 
 KQL(Kusto 쿼리 언어)은 KQL 데이터베이스에 정의된 테이블의 정적 또는 스트리밍 데이터를 쿼리하는 데 사용됩니다. 판매 데이터를 분석하려면 KQL 데이터베이스에 테이블을 만들고 파일에서 데이터를 수집해야 합니다.
 
-1. **Microsoft Fabric** 환경 포털에서 다음과 같이 **Real-Time Intelligence** 환경 이미지를 선택합니다.
+1. 포털의 왼쪽 아래에서 실시간 인텔리전스 환경으로 전환합니다.
 
-    ![Real-Time Intelligence가 선택된 Fabric Experience 홈의 스크린샷.](./Images/fabric-experience-home.png)
+    ![환경 전환기 메뉴의 스크린샷.](./Images/fabric-real-time.png)
 
-2. **실시간 인텔리전스** 환경의 **홈** 페이지에서 **KQL 데이터베이스**를 선택하고 원하는 이름으로 새 데이터베이스를 만듭니다.
+2. 실시간 인텔리전스 홈페이지에서 선택한 이름으로 새 **Eventhouse**를 만듭니다.
+
+   ![Eventhouse가 강조 표시된 RTI 편집기의 스크린샷](./Images/create-kql-db.png)
+
+   Eventhouse는 여러 프로젝트에서 데이터베이스를 그룹화하고 관리하는 데 사용됩니다. 빈 KQL 데이터베이스가 eventhouse의 이름으로 자동으로 만들어집니다.
+   
 3. 새 데이터베이스가 만들어지면 **로컬 파일**에서 데이터를 가져오는 옵션을 선택합니다. 그런 다음, 마법사에서 다음 옵션을 선택하여 데이터를 새 테이블로 가져옵니다.
     - **대상:**
         - **데이터베이스**: *만든 데이터베이스가 이미 선택되어 있음*
