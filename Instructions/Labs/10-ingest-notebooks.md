@@ -123,7 +123,7 @@ lab:
     filtered_df = filtered_df.filter(raw_df["storeAndFwdFlag"].isNotNull())
     
     # Load the filtered data into a Delta table
-    table_name = "yellow_taxi"  # Replace with your desired table name
+    table_name = "yellow_taxi"
     filtered_df.write.format("delta").mode("append").saveAsTable(table_name)
     
     # Display results
@@ -164,26 +164,11 @@ lab:
     display(table_df.limit(10))
     ```
 
-1. 또 다른 코드 셀을 만들고 이 코드도 삽입합니다.
+1. 코드 셀 옆에 있는 **&#9655; 셀 실행**을 선택합니다.
 
-    ```python
-    # Load table into df
-    delta_table_name = "yellow_taxi_opt"
-    opttable_df = spark.read.format("delta").table(delta_table_name)
-    
-    # Create temp SQL table
-    opttable_df.createOrReplaceTempView("yellow_taxi_opt")
-    
-    # SQL Query to confirm
-    opttable_df = spark.sql('SELECT * FROM yellow_taxi_opt')
-    
-    # Display results
-    display(opttable_df.limit(10))
-    ```
+     많은 데이터 분석가들은 SQL 구문을 사용하는 것이 더 편리합니다. Spark SQL은 SQL 문을 실행하거나 관계형 테이블에서 데이터를 유지하는 데 사용할 수 있는 Spark의 SQL 언어 API입니다.
 
-1. 이제 두 쿼리 중 첫 번째 쿼리에 대해 **셀 실행** 단추 옆에 있는 &#9660; 화살표를 선택하고 드롭다운에서 **이 셀과 아래 실행**을 선택합니다.
-
-    그러면 마지막 두 개의 코드 셀이 실행됩니다. 최적화되지 않은 데이터가 있는 테이블과 최적화된 데이터가 있는 테이블을 쿼리하는 것 간의 실행 시간 차이를 확인합니다.
+   방금 실행한 코드는 데이터 프레임에서 데이터의 관계형 *뷰*를 만든 다음 **spark.sql **라이브러리를 사용하여 Python 코드 내에 Spark SQL 구문을 포함하고 뷰를 쿼리하여 결과를 데이터 프레임으로 반환합니다.
 
 ## 리소스 정리
 
