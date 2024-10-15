@@ -18,7 +18,7 @@ lab:
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. 브라우저에서 Microsoft Fabric 홈페이지(`https://app.fabric.microsoft.com`)로 이동하고 필요한 경우 Fabric 자격 증명을 사용해 로그인합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 필요한 경우 Fabric 자격 증명을 사용해 로그인합니다.
 1. Fabric 홈페이지에서 **Synapse 데이터 과학**을 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.

@@ -6,7 +6,7 @@ lab:
 
 # 모델 관계 작업
 
-이 연습에서는 특히 모델 관계를 사용하여 롤플레잉 차원의 필요성을 해결합니다. 활성 및 비활성 관계, 그리고 관계 동작을 수정하는 DAX(Data Analysis Expressions) 함수도 사용됩니다.
+이 연습에서는 모델 관계를 사용하여 특히 롤플레잉 차원의 필요성을 해결합니다. 활성 및 비활성 관계, 그리고 관계 동작을 수정하는 DAX(Data Analysis Expressions) 함수도 사용됩니다.
 
 이 연습에서는 다음 작업을 수행하는 방법을 알아봅니다.
 
@@ -14,7 +14,7 @@ lab:
 - 관계 속성을 설정합니다.
 - 관계 동작을 수정하는 DAX 함수를 사용합니다.
 
-이 랩을 완료하는 데 약 **45** 분이 걸립니다.
+이 랩을 완료하는 데 약 **45**분이 소요됩니다.
 
 > **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
@@ -24,7 +24,7 @@ lab:
 
 ### 시작 파일 다운로드
 
-1. [판매 분석 시작 파일을](https://aka.ms/fabric-relationships-starter) `https://aka.ms/fabric-relationships-starter` 다운로드하여 로컬 컴퓨터(모든 폴더)에 저장합니다.
+1. [판매 분석 시작 파일](https://aka.ms/fabric-relationships-starter)을 `https://aka.ms/fabric-relationships-starter`에서 다운로드하여 로컬 컴퓨터(임의의 폴더)에 저장합니다.
 
 1. 다운로드한 파일로 이동하여 Power BI Desktop에서 엽니다.
     >참고: 변경 내용을 적용하라는 경고를 무시하고 닫습니다.
@@ -68,7 +68,7 @@ lab:
 
     ![](Images/work-with-model-relationships-image6.png)
 
-3. 테이블 시각적 **** 개체에 열을 추가하려면 데이터 창(오른쪽에 있음)에서 먼저 날짜** 테이블을 확장**합니다.
+3. 테이블 시각적 개체에 열을 추가하려면 먼저 (오른쪽에 있는) **데이터** 창에서 **Date** 테이블을 확장합니다.
 
     ![](Images/work-with-model-relationships-image7.png)
 
@@ -88,7 +88,7 @@ lab:
 
     회계 연도를 명확히 하려면 시각적 개체 필드의 이름을 바꾸거나 시각적 개체에 제목을 추가하는 것이 좋습니다.**
 
-7. 테이블 시각적 개체에 대한 **시각화** 창의 **값** 웰 내부에서 아래쪽 화살표를 선택한 다음 **이 시각적 개체 이름 바꾸기**를 선택합니다.
+7. 테이블 시각적 개체의 **시각화** 창에서 **열** 웰 내부에서 아래쪽 화살표를 선택한 다음 **이 시각적 개체 이름 바꾸기**를 선택합니다.
 
     ![](Images/work-with-model-relationships-image11.png)
 
@@ -96,7 +96,7 @@ lab:
 
     ![](Images/work-with-model-relationships-image12.png)
 
-    *참고: 이름을 두 번 클릭하여 시각적 필드의 이름을 더 빠르게 바꿀 수 있습니다.*
+    *참고: 시각적 필드의 이름을 두 번 클릭하면 이름을 더 빠르게 바꿀 수 있습니다.*
 
 9. 테이블 시각적 열 머리글이 새 이름으로 업데이트됩니다.
 
@@ -158,7 +158,7 @@ lab:
 
 이 작업에서는 USERELATIONSHIP 함수를 사용하여 비활성 관계를 활성화합니다.
 
-1. 데이터 창에서 Sales** 테이블을 마우스 오른쪽 단추로 **클릭한 다음 새 측정값**을 선택합니다**.** ** 
+1. **데이터** 창에서 **Sales** 테이블을 마우스 오른쪽 단추로 클릭한 다음 **새 측정값**을 선택합니다.
 
     ![](Images/work-with-model-relationships-image21.png)
 
@@ -190,7 +190,7 @@ lab:
 
     또 다른 방법은 각 롤플레잉 차원에 대해 다른 모델 테이블을 만드는 것입니다. 이 방법은 다음 연습에서 수행해 보겠습니다.**
 
-6. 테이블 시각적 개체에서 측정값을 제거하려면 **시각화** 창의 **값** 웰 내부에서 **Sales Shipped** 필드에 해당하는 **X**를 누릅니다.
+6. 테이블 시각적 개체에서 측정값을 제거하려면 **시각화** 창의 **열** 웰 내부에서 **Sales Shipped** 필드에 해당하는 **X**를 누릅니다.
 
     ![](Images/work-with-model-relationships-image25.png)
 
@@ -240,17 +240,17 @@ lab:
 
 이 작업에서는 모델에 다른 날짜 테이블을 추가하는 쿼리를 만듭니다.
 
-1. 홈 리본 탭의 ****쿼리** 그룹 내에서 데이터** 변환 아이콘을 **선택하여 Power Query 편집기** 엽니다**.**
+1. **Power Query 편집기**를 열려면 **홈** 리본 탭의 **쿼리** 그룹 내에서 **데이터 변환** 아이콘을 선택합니다.
 
     ![](Images/work-with-model-relationships-image33.png)
 
-    *연결 **방법을 지정하라는 메시지가 표시되면 자격 증명**을 편집합니다.*
+    *연결 방법을 지정하라는 메시지가 표시되면 **자격 증명을 편집합니다**.*
 
     ![](Images/work-with-model-relationships-image52.png)
 
-    *Windows의 기본 연결 설정에 "내 현재 자격 증명 사용"**을 그대로 두고 커넥트**.*
+    *Windows의 기본 연결 설정에 "내 현재 자격 증명 사용" 을 그대로 두고 **연결합니다**.*
 
-     ![](Images/work-with-model-relationships-image53.png)*선택 **예**, 경고 메시지를 닫습니다.*
+     ![](Images/work-with-model-relationships-image53.png)*경고 메시지를 닫으려면 **예**를 선택합니다.*
 
 2. **Power Query 편집기** 창의 (왼쪽에 있는) **쿼리** 창에서 **Date** 쿼리를 마우스 오른쪽 단추로 클릭한 다음 **참조**를 선택합니다.
 
@@ -270,7 +270,7 @@ lab:
 
 6. 또한 **Fiscal Year** 열의 이름을 **Ship Year**로 바꿉니다.
 
-    *가능하면 모든 열의 이름을 변경하여 그들이 플레이하는 역할을 설명하는 것이 좋습니다. 이 랩에서는 작업을 단순하게 유지하기 위해 두 개의 열만 이름을 바꿉니다.*
+    *가능하면 실행하는 역할을 설명하도록 모든 열의 이름을 바꾸는 것이 좋습니다. 이 랩에서는 간단한 설명을 위해 열 이름을 두 개만 바꿉니다.*
 
 7. 테이블을 모델로 로드하려면 **홈** 리본 탭에서 **닫기&amp;적용** 아이콘을 선택합니다.
 
@@ -304,13 +304,13 @@ lab:
 
 5. 새 테이블 시각적 개체를 기존 테이블 시각적 개체의 오른쪽으로 이동합니다.
 
-6. 새 테이블 시각적 개체를 선택한 다음 **시각화** 창의 **값** 웰 내부에서 **Order Year** 필드를 제거합니다.
+6. 새 테이블 시각적 개체를 선택한 다음 **시각화** 창의 **열** 웰 내부에서 **Order Year** 필드를 제거합니다.
 
     ![](Images/work-with-model-relationships-image42.png)
 
-7. **데이터** 창에서 배송 날짜** 테이블을 엽니다**.
+7. **데이터** 창에서 **Ship Date** 테이블을 확장하여 엽니다.
 
-8. 새 테이블 시각적 개체에 새 필드를 추가하려면 **Ship Date** 테이블에서 **Ship Year** 필드를 **Sales Amount** 필드 위의 **값** 웰로 끌어옵니다.
+8. 새 테이블 시각적 개체에 새 필드를 추가하려면 **Ship Date** 테이블에서 **Ship Year** 필드를 **Sales Amount** 필드 위의 **Columns** 웰로 끌어다 놓습니다.
 
     ![](Images/work-with-model-relationships-image43.png)
 
@@ -332,7 +332,7 @@ lab:
 
 이 작업에서는 CROSSFILTER 및 TREATAS 함수를 사용하여 계산 중에 관계 동작을 수정합니다.
 
-1. 데이터** 창의 **Sales 테이블 내에서 **Sales** Shipped 측정값을 **** 선택합니다.
+1. **데이터** 창의 **Sales** 테이블 내부에서 **Sales Shipped** 측정값을 선택합니다.
 
     ![](Images/work-with-model-relationships-image45.png)
 
@@ -368,7 +368,7 @@ lab:
 
 이 작업에서는 발송되지 않은 판매액을 표시하는 측정값을 만듭니다.
 
-1. 다음 정의를 사용하여 Sales 테이블에서 Sales** Unshipped **** 라는 **측정값을 만듭니다.
+1. 다음 정의를 사용하여 **Sales**테이블에서 **Sales Unshipped**라는 측정값을 만듭니다.
 
     ```DAX
     Sales Unshipped =

@@ -4,7 +4,7 @@ lab:
   module: Load data into a warehouse in Microsoft Fabric
 ---
 
-# 데이터를 웨어하우스에 로드
+# T-SQL을 사용하여 웨어하우스에 데이터 로드
 
 Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 관계형 데이터베이스를 제공합니다. 레이크하우스에 정의된 테이블에 대한 기본 읽기 전용 SQL 엔드포인트와 달리 데이터 웨어하우스는 전체 SQL 의미 체계를 제공합니다. 여기에 테이블에 데이터를 삽입, 업데이트 및 삭제하는 기능이 포함됩니다.
 
@@ -16,7 +16,7 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com)에서 **Synapse 데이터 웨어하우스**를 선택합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Synapse 데이터 웨어하우스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -29,7 +29,7 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
 1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
 
-    1분 정도 지나면 빈 레이크하우스가 새로 만들어집니다. 분석을 위해 일부 데이터를 데이터 레이크하우스에 수집해야 합니다. 이 작업을 수행하는 방법은 여러 가지가 있지만 이 연습에서는 CSV 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 후 해당 파일을 레이크하우스에 업로드합니다.
+    1분 정도 지나면 빈 레이크하우스가 새로 만들어집니다. 분석을 위해 일부 데이터를 데이터 레이크하우스에 수집해야 합니다. 이를 수행하는 방법은 여러 가지가 있지만 이 연습에서는 CSV 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 이를 레이크하우스에 업로드합니다.
 
 1. `https://github.com/MicrosoftLearning/dp-data/raw/main/sales.csv`에서 이 연습용 파일을 다운로드합니다.
 

@@ -8,9 +8,9 @@ lab:
 
 이 랩에서는 두 개의 외부 도구를 사용하여 데이터 모델 및 DAX 쿼리를 개발, 관리 및 최적화하는 방법을 알아봅니다.
 
-이 연습에서는 다음을 사용하는 방법을 알아봅니다.
+이 연습에서는 다음 작업을 수행하는 방법을 알아봅니다.
 
-- 테이블 형식 편집기에서 BPA(모범 사례 분석기).
+- 테이블 형식 편집기의 BPA(모범 사례 분석기).
 - DAX Studio.
 
 이 랩을 완료하는 데 약 **30**분이 소요됩니다.
@@ -31,7 +31,7 @@ BPA는 모델 디자인 및 성능을 개선하기 위해 저지를 수 있는 �
 
 테이블 형식 편집기 2를 다운로드하여 설치해 계산 그룹을 만들 수 있습니다.
 
-***중요**: VM 환경에 테이블 형식 편집기 2를 이미 설치한 경우 다음 작업을 계속합니다.*
+***중요**: VM 환경에 테이블 형식 편집기 2를 이미 설치한 경우 다음 작업을 계속 진행합니다.*
 
 테이블 형식 편집기는 Analysis Services 및 Power BI에 대한 테이블 형식 모델을 작성하기 위한 대체 도구입니다. 테이블 형식 편집기 2는 모델의 데이터에 액세스하지 않고 BIM 파일을 편집할 수 있는 오픈 소스 프로젝트입니다.**
 
@@ -65,7 +65,7 @@ BPA는 모델 디자인 및 성능을 개선하기 위해 저지를 수 있는 �
 
 이 작업에서는 미리 개발된 Power BI Desktop 솔루션을 엽니다.
 
-1. [Sales Analysis 시작 파일을](https://aka.ms/fabric-optimize-starter) `https://aka.ms/fabric-optimize-starter` 다운로드하여 기억할 위치에 저장합니다.
+1. [판매 분석 시작 파일](https://aka.ms/fabric-optimize-starter)을 `https://aka.ms/fabric-optimize-starter`에서 다운로드하여 기억할 위치에 저장합니다.
 
 1. 다운로드한 파일로 이동하여 Power BI Desktop에서 엽니다.
 
@@ -91,7 +91,7 @@ BPA는 모델 디자인 및 성능을 개선하기 위해 저지를 수 있는 �
 
     ![](Images/use-tools-to-optimize-power-bi-performance-image11.png)
 
-    *모델은 8개의 차원 테이블과 1개의 팩트 테이블로 구성됩니다. Sales** 팩트 테이블에는 **판매 주문 세부 정보가 저장됩니다. 제품 차원에 대한 눈송이 차원 테이블(**Category** > **Subcategory**** > Product**)을 포함하는 클래식 스타 스키마 디자인입니다.*
+    *모델은 차원 테이블 8개와 팩트 테이블 1개로 구성됩니다. **판매** 팩트 테이블에는 판매 주문 세부 정보가 저장됩니다. 이는 제품 차원에 대한 snowflake 차원 테이블(**범주** > **하위 범주** > **제품**)을 포함하는 고전적인 별모양 스키마 디자인입니다.*
 
     이 연습에서는 BPA를 사용하여 모델 문제를 검색하고 해결합니다.**
 
@@ -109,7 +109,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
 2. BPA 규칙을 로드하려면 **C# 스크립트** 탭을 선택합니다.
 
-    *참고: 이전 버전의 테이블 형식 편집기에서 고급 스크립팅 탭이라고 할 수 있습니다.*
+    *참고: 테이블 형식 편집기의 이전 버전에서는 이 탭을 고급 스크립팅 탭이라고 할 수 있습니다.*
 
     ![](Images/use-tools-to-optimize-power-bi-performance-image13.png)
 
@@ -198,7 +198,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
 6. 식 편집기에서 [DIVIDE](https://docs.microsoft.com/dax/divide-function-dax) 함수를 더욱 효율적이고 (안전하게) 사용할 수 있도록 다음과 같이 DAX 수식을 수정합니다.
 
-    *팁: 모든 수식을 D:\fabric\Allfiles\Labs\16\Snippets.txt** 복사하여 붙여**넣을 수 있습니다.*
+    *팁: 모든 수식은 **D:\fabric\Allfiles\Labs\16\Snippets.txt** 파일에서 복사하여 붙여 넣을 수 있습니다.*
 
     ```dax
     DIVIDE ( [Profit], SUM ( 'Sales'[Sales Amount] ) )
@@ -228,7 +228,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
 13. 테이블 형식 편집기로 전환하여, **C# 스크립트** 탭을 선택합니다.
 
-    *참고: 이전 버전의 테이블 형식 편집기에서 고급 스크립팅 탭이라고 할 수 있습니다.*
+    *참고: 테이블 형식 편집기의 이전 버전에서는 이 탭을 고급 스크립팅 탭이라고 할 수 있습니다.*
 
     ![](Images/use-tools-to-optimize-power-bi-performance-image13.png)
 
@@ -252,7 +252,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
     또한 테이블 형식 편집기 변경 내용이 저장되도록 Power BI Desktop 파일을 저장해야 합니다.**
 
-    *보류 중인 변경 내용에 대한 메시지에서 나중에** 적용을 선택합니다**.*
+    *보류 중인 변경 내용에 대한 메시지에서 **나중에 적용**을 선택합니다.*
 
 ## DAX Studio 사용
 
@@ -268,7 +268,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
     ```https://daxstudio.org/downloads/```
 
-1. DaxStudio_3_X_XX_setup.exe(설치 관리자)**를 선택합니다**. 그러면 파일 설치가 시작됩니다.
+1. **DaxStudio_3_X_XX_setup.exe (installer)** 를 선택하면 파일 설치가 시작됩니다.
     참고: DAX Studio의 버전은 시간이 지남에 따라 약간 변경됩니다. 최신 릴리스를 다운로드하세요.**
 
 1. 완료되면 **파일 열기**를 선택하여 설치 관리자를 실행합니다.
@@ -296,7 +296,7 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 1. 완료되면 **DAX Studio 시작**이 선택된 상태에서 **마침**을 선택합니다. 그러면 DAX Studio가 열립니다.
     ![그래픽 사용자 인터페이스, 애플리케이션 자동 생성된 설명](Images/use-tools-to-optimize-power-bi-performance-image31f.png)
 
-1. **커넥트** 창에서 Power BI/SSDT 모델** 옵션을 선택합니다**.
+1. **연결** 창에서 **Power BI / SSDT 모델** 옵션을 선택합니다.
 
 1. 해당 드롭다운 목록에서 **Sales Analysis - Use tools to optimize Power BI performance**(판매 분석 - 도구를 사용하여 Power BI 성능 최적화) 모델이 선택되어 있는지 확인합니다.
 
@@ -316,11 +316,11 @@ BPA 규칙은 테이블 형식 편집기 설치 중에 추가되지 않으므로
 
 데이터 모델 볼륨이 작은 경우 쿼리를 최적화하기 어렵습니다. 이 연습에서는 DAX 쿼리를 최적화하는 대신 DAX Studio를 사용하는 데 중점을 둡니다.**
 
-1. 브라우저 창에서 월별 Profit Growth.dax[ 파일을 `https://aka.ms/fabric-optimize-dax` 다운로드](https://aka.ms/fabric-optimize-dax)하여 로컬 컴퓨터(모든 폴더)에 저장합니다.
+1. 브라우저 창에서 [Monthly Profit Growth.dax](https://aka.ms/fabric-optimize-dax) 파일을 `https://aka.ms/fabric-optimize-dax`에서 다운로드하여 로컬 컴퓨터(임의의 폴더)에 저장합니다.
 
    ![](https://github.com/MicrosoftLearning/mslearn-fabric/assets/34583336/58254cce-753e-4322-9060-536e12554aa7)
 
-3. Dax Studio 창으로 전환하고 **파일** 메뉴에서 찾아보기를** 선택하여 **월별 Profit Growth.dax** 파일**로 **이동하고 파일을 엽니다**.
+3. Dax Studio 창으로 전환하고 **파일** 메뉴에서 **찾아보기**를 선택하여 **Monthly Profit Growth.dax** 파일을 찾아 **엽니다**.
 
     ![](Images/use-tools-to-optimize-power-bi-performance-image33.png)
 
