@@ -1,7 +1,7 @@
 ---
 lab:
-  title: Microsoft Fabric에서 실시간 대시보드 시작
-  module: Get started with Real-Time Dashboards in Microsoft Fabric
+  title: Microsoft Fabric의 실시간 대시보드
+  module: Get Started with Real-Time Dashboards in Microsoft Fabric
 ---
 
 # Microsoft Fabric의 실시간 대시보드 시작

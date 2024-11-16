@@ -98,7 +98,7 @@ lab:
     | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
     | 1 | SO49172 | 1 | 2021-01-01 | Brian Howard | brian23@adventure-works.com | Road-250 Red, 52 | 1 | 2443.35 | 195.468 |
     | 2 |  SO49173 | 1 | 2021-01-01 | Linda Alvarez | linda19@adventure-works.com | Mountain-200 Silver, 38 | 1 | 2071.4197 | 165.7136 |
-    | , , | , , | , , | , , | , , | , , | , , | , , | , , | , , |
+    | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
     실행한 코드는 **bronze** 폴더의 CSV 파일에서 Spark 데이터 프레임으로 데이터를 로드한 다음, 데이터 프레임의 처음 몇 행을 표시했습니다.
 
@@ -309,10 +309,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dfdimDate_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.OrderDate = updates.OrderDate'
+        'silver.OrderDate = updates.OrderDate'
       ) \
        .whenMatchedUpdate(set =
         {
@@ -397,10 +397,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dfdimCustomer_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.CustomerName = updates.CustomerName AND gold.Email = updates.Email'
+        'silver.CustomerName = updates.CustomerName AND silver.Email = updates.Email'
       ) \
        .whenMatchedUpdate(set =
         {
@@ -436,7 +436,7 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
 12. **다른 코드 블록을 추가**하여 **product_silver** 데이터 프레임을 만듭니다.
   
     ```python
-    from pyspark.sql.functions import col, split, lit, when
+    from pyspark.sql.functions import col, split, lit
     
     # Create product_silver dataframe
     
@@ -479,10 +479,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
             
     dfUpdates = dfdimProduct_gold
             
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
             dfUpdates.alias('updates'),
-            'gold.ItemName = updates.ItemName AND gold.ItemInfo = updates.ItemInfo'
+            'silver.ItemName = updates.ItemName AND silver.ItemInfo = updates.ItemInfo'
             ) \
             .whenMatchedUpdate(set =
             {
@@ -556,10 +556,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dffactSales_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.OrderDate = updates.OrderDate AND gold.CustomerID = updates.CustomerID AND gold.ItemID = updates.ItemID'
+        'silver.OrderDate = updates.OrderDate AND silver.CustomerID = updates.CustomerID AND silver.ItemID = updates.ItemID'
       ) \
        .whenMatchedUpdate(set =
         {
