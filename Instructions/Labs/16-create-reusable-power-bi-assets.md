@@ -1,6 +1,7 @@
 ---
 lab:
   title: 재사용 가능한 Power BI 자산 만들기
+  module: Create reusable Power BI assets
 ---
 
 # 재사용 가능한 Power BI 자산 만들기
