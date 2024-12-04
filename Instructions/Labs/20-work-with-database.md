@@ -102,15 +102,14 @@ SQL 쿼리 편집기는 IntelliSense, 코드 완료, 구문 강조 표시, 클�
 
     ```sql
     INSERT INTO SalesLT.PublicHolidays (CountryOrRegion, HolidayName, Date, IsPaidTimeOff)
-    SELECT CountryOrRegion, HolidayName, Date, IsPaidTimeOff
-    FROM OPENROWSET 
-    (BULK 'abs://holidaydatacontainer@azureopendatastorage.blob.core.windows.net/Processed/*.parquet'
-    , FORMAT = 'PARQUET') AS [PublicHolidays]
-    WHERE countryorRegion in ('Canada', 'United Kingdom', 'United States')
-        AND YEAR([date]) = 2024
+    VALUES
+        ('Canada', 'Victoria Day', '2024-02-19', 1),
+        ('United Kingdom', 'Christmas Day', '2024-12-25', 1),
+        ('United Kingdom', 'Spring Bank Holiday', '2024-05-27', 1),
+        ('United States', 'Thanksgiving Day', '2024-11-28', 1);
     ```
     
-    이 쿼리는 Azure Blob Storage의 Parquet 파일에서 휴일 데이터를 읽고 2024년 캐나다, 영국 및 미국 휴일만 포함하도록 필터링한 다음, 이 필터링된 데이터를 `SalesLT.PublicHolidays` 테이블에 삽입합니다.    
+    이 예제에서 이 쿼리는 2024년 캐나다, 영국 및 미국의 공휴일을 `SalesLT.PublicHolidays` 테이블에 삽입합니다.    
 
 1. 새 쿼리 편집기 또는 기존 쿼리 편집기에서 다음 T-SQL 코드를 입력하고 실행합니다.
 
@@ -190,7 +189,7 @@ SQL 쿼리 편집기는 IntelliSense, 코드 완료, 구문 강조 표시, 클�
 
 > **추가 정보**: 해당 플랫폼에서 사용할 수 있는 다른 구성 요소에 대한 자세한 내용은 Microsoft Fabric 설명서에서 [Microsoft Fabric이란 무엇인가요?](https://learn.microsoft.com/fabric/get-started/microsoft-fabric-overview)를 참조합니다.
 
-이 연습에서는 Microsoft Fabric의 SQL 데이터베이스에서 외부 데이터를 만들고, 가져오고, 쿼리하고, 보호해 보았습니다.
+이 연습에서는 Microsoft Fabric의 SQL 데이터베이스에서 데이터를 만들고, 쿼리하고, 보호하는 작업을 수행했습니다.
 
 ## 리소스 정리
 
