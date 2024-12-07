@@ -3,7 +3,7 @@ lab:
   title: Microsoft Fabric에서 Eventstream 시작
   module: Get started with Eventstream in Microsoft Fabric
 ---
-# Real-Time Intelligence에서 Eventstream 시작
+# Microsoft Fabric에서 Eventstream 시작
 
 Eventstream은 코드 없는 환경을 통해 실시간 이벤트를 캡처, 변환 및 다양한 대상으로 라우팅하는 Microsoft Fabric의 기능입니다. 변환이 필요한 경우 이벤트 데이터 원본, 라우팅 대상 및 이벤트 프로세서를 Eventstream에 추가할 수 있습니다. Microsoft Fabric의 EventStore는 클러스터의 이벤트를 유지 관리하고 특정 시점의 클러스터 또는 워크로드 상태를 이해하는 방법을 제공하는 모니터링 옵션입니다. 클러스터의 각 엔터티 및 엔터티 형식에 사용할 수 있는 이벤트에 대해 EventStore 서비스를 쿼리할 수 있습니다. 즉, 클러스터, 노드, 애플리케이션, 서비스, 파티션, 파티션 복제본 등 다양한 수준에서 이벤트를 쿼리할 수 있습니다. EventStore 서비스에는 클러스터의 이벤트 간에 상관 관계를 지정하는 기능도 있습니다. EventStore 서비스는 서로 영향을 미칠 수 있는 서로 다른 엔터티에서 동시에 기록된 이벤트를 살펴보고 이러한 이벤트를 연결하여 클러스터의 작업에 대한 원인을 식별하는 데 도움을 줍니다. Microsoft Fabric 클러스터 모니터링 및 진단을 위한 또 다른 옵션은 EventFlow를 사용하여 이벤트를 집계하고 수집하는 것입니다.
 

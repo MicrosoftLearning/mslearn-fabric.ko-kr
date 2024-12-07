@@ -16,7 +16,7 @@ lab:
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Power BI**를 선택합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Synapse 데이터 엔지니어링**을 선택합니다.
 2. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 3. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 4. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -33,7 +33,7 @@ lab:
 
 이제 작업 영역이 있으므로 분석하려는 데이터에 대한 데이터 레이크하우스를 만들어야 합니다.
 
-1. 방금 만든 작업 영역에서 **새 항목** 버튼을 클릭하여 **Sales**이라는 이름의 새 **레이크하우스**를 만듭니다.
+1. **Synapse Data Engineering** 홈페이지에서 **Sales**라는 새 **레이크하우스**를 만듭니다.
 
     1분 정도 지나면 빈 레이크하우스가 새로 만들어집니다. 분석을 위해 일부 데이터를 데이터 레이크하우스에 수집해야 합니다. 이 작업을 수행하는 방법에는 여러 가지가 있지만 이 연습에서는 텍스트 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 레이크하우스에 업로드하기만 하면 됩니다.
 
@@ -206,15 +206,15 @@ lab:
 
 ## SQL 엔드포인트를 사용하여 silver 레이어의 데이터 탐색
 
-이제 실버 레이어에 데이터가 있으므로 SQL 분석 엔드포인트를 사용하여 데이터를 탐색하고 몇 가지 기본 분석을 수행할 수 있습니다. SQL에 익숙하고 데이터에 대한 몇 가지 기본적인 탐색을 수행하려는 경우 유용합니다. 이 연습에서는 패브릭의 SQL 엔드포인트 보기를 사용하지만 SSMS(SQL Server Management Studio) 및 Azure Data Explorer와 같은 다른 도구를 사용할 수도 있습니다.
+이제 silver 레이어에 데이터가 있으므로 SQL 엔드포인트를 사용하여 데이터를 탐색하고 몇 가지 기본 분석을 수행할 수 있습니다. SQL에 익숙하고 데이터에 대한 몇 가지 기본적인 탐색을 수행하려는 경우 이 옵션을 사용하는 것이 좋습니다. 이 연습에서는 패브릭의 SQL 엔드포인트 보기를 사용하지만 SSMS(SQL Server Management Studio) 및 Azure Data Explorer와 같은 다른 도구를 사용할 수도 있습니다.
 
-1. 작업 영역으로 돌아가서 이제 몇 개의 항목이 나열되었는지 확인합니다. **Sales SQL 분석 엔드포인트**를 선택하여 SQL 분석 엔드포인트 보기에서 레이크하우스를 엽니다.
+1. 작업 영역으로 돌아가서 이제 몇 개의 자산이 나열되었는지 확인합니다. **SQL 엔드포인트**를 선택하여 SQL 엔드포인트 보기에서 레이크하우스를 엽니다.
 
     ![Lakehouse의 SQL 엔드포인트 스크린샷](./Images/sql-endpoint-item.png)
 
 2. 리본에서 **새 SQL 쿼리**를 선택하면 SQL 쿼리 편집기가 열립니다. 레이크하우스 탐색기 창에서 기존 쿼리 이름 옆에 있는 **...** 메뉴 항목을 사용하여 쿼리 이름을 변경할 수 있습니다.
 
-   다음으로 두 개의 SQL 쿼리를 실행하여 데이터를 탐색합니다.
+   두 개의 sql 쿼리를 실행하여 데이터를 탐색합니다.
 
 3. 다음 쿼리를 쿼리 편집기에 붙여넣고 **실행**을 선택합니다.
 
@@ -230,7 +230,7 @@ lab:
 
     ![레이크하우스의 SQL 쿼리 결과 스크린샷.](./Images/total-sales-sql.png)
 
-4. 이제 어떤 고객이 가장 많이 구매하고 있는지 검토합니다(수량 측면에서). 다음 쿼리를 쿼리 편집기에 붙여넣고 **실행**을 선택합니다.
+4. 이제 어떤 고객이 가장 많이 구매하고 있는지 살펴보겠습니다(수량 측면에서). 다음 쿼리를 쿼리 편집기에 붙여넣고 **실행**을 선택합니다.
 
     ```sql
     SELECT TOP 10 CustomerName, SUM(Quantity) AS TotalQuantity
@@ -249,11 +249,11 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
 
 단일 Notebook에서 이 모든 작업을 수행할 수 있었지만, 이 연습에서는 별도의 Notebook을 사용하여 데이터를 bronze에서 silver로 변환한 다음 silver에서 gold로 변환하는 프로세스를 보여 줍니다. 디버깅, 문제 해결 및 재사용에 도움이 될 수 있습니다.
 
-1. 작업 영역 홈페이지로 돌아가서 **Gold용 데이터 변환**이라는 새 Notebook을 만듭니다.
+1. **데이터 엔지니어링** 홈 페이지로 돌아가서 **Gold용 데이터 변환**이라는 새 Notebook을 만듭니다.
 
-2. 레이크하우스 탐색기 창에서 **추가**를 선택한 다음, 이전에 만든 **Sales** 레이크하우스를 선택하여 **Sales** 레이크하우스를 추가합니다. **레이크하우스 추가** 창에서 **스키마가 없는 기존 레이크하우스**를 선택합니다. 탐색기 창의 **테이블** 섹션에 나열된 **sales_silver** 테이블이 표시되어야 합니다.
+2. 레이크하우스 탐색기 창에서 **추가**를 선택한 다음, 이전에 만든 **Sales** 레이크하우스를 선택하여 **Sales** 레이크하우스를 추가합니다. 탐색기 창의 **테이블** 섹션에 나열된 **sales_silver** 테이블이 표시되어야 합니다.
 
-3. 기존 코드 블록에서 주석 처리된 텍스트를 제거하고 **다음 코드를 추가**하여 데이터 프레임에 데이터를 로드하고 스타 스키마 빌드를 시작한 후 다음을 실행합니다.
+3. 기존 코드 블록에서 상용구 텍스트를 제거하고 **다음 코드를 추가**하여 데이터 프레임에 데이터를 로드하고 별모양 스키마 작성을 시작한 다음 실행합니다.
 
    ```python
     # Load data to the dataframe as a starting point to create the gold layer
@@ -309,10 +309,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dfdimDate_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.OrderDate = updates.OrderDate'
+        'silver.OrderDate = updates.OrderDate'
       ) \
        .whenMatchedUpdate(set =
         {
@@ -326,13 +326,13 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
           "Month": "updates.Month",
           "Year": "updates.Year",
           "mmmyyyy": "updates.mmmyyyy",
-          "yyyymm": "updates.yyyymm"
+          "yyyymm": "yyyymm"
         }
       ) \
       .execute()
     ```
 
-    이제 날짜 차원이 설정되었습니다. 이제 고객 차원을 만듭니다.
+    축하합니다! 날짜 차원이 모두 설정됩니다. 이제 고객 차원을 만듭니다.
 7. 고객 차원 테이블을 작성하려면 **새 코드 블록을 추가**하고 다음 코드를 붙여넣은 후 실행합니다.
 
     ```python
@@ -397,10 +397,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dfdimCustomer_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.CustomerName = updates.CustomerName AND gold.Email = updates.Email'
+        'silver.CustomerName = updates.CustomerName AND silver.Email = updates.Email'
       ) \
        .whenMatchedUpdate(set =
         {
@@ -436,7 +436,7 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
 12. **다른 코드 블록을 추가**하여 **product_silver** 데이터 프레임을 만듭니다.
   
     ```python
-    from pyspark.sql.functions import col, split, lit, when
+    from pyspark.sql.functions import col, split, lit
     
     # Create product_silver dataframe
     
@@ -479,10 +479,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
             
     dfUpdates = dfdimProduct_gold
             
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
             dfUpdates.alias('updates'),
-            'gold.ItemName = updates.ItemName AND gold.ItemInfo = updates.ItemInfo'
+            'silver.ItemName = updates.ItemName AND silver.ItemInfo = updates.ItemInfo'
             ) \
             .whenMatchedUpdate(set =
             {
@@ -556,10 +556,10 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
     
     dfUpdates = dffactSales_gold
     
-    deltaTable.alias('gold') \
+    deltaTable.alias('silver') \
       .merge(
         dfUpdates.alias('updates'),
-        'gold.OrderDate = updates.OrderDate AND gold.CustomerID = updates.CustomerID AND gold.ItemID = updates.ItemID'
+        'silver.OrderDate = updates.OrderDate AND silver.CustomerID = updates.CustomerID AND silver.ItemID = updates.ItemID'
       ) \
        .whenMatchedUpdate(set =
         {
@@ -598,7 +598,7 @@ bronze 레이어에서 데이터를 성공적으로 가져와 변환하고 silve
    - dimproduct_gold
    - factsales_gold
 
-    그러면 관계 및 측정값을 만들 수 있는 패브릭의 의미 체계 모델이 열립니다.
+    그러면 다음과 같이 관계 및 측정값을 만들 수 있는 패브릭의 의미 체계 모델이 열립니다.
 
     ![패브릭의 의미 체계 모델 스크린샷](./Images/dataset-relationships.png)
 

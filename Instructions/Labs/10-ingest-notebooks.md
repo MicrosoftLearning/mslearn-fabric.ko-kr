@@ -20,7 +20,7 @@ lab:
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Synapse 데이터 엔지니어링**을 선택합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 ** 데이터 엔지니어링**을 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -31,7 +31,7 @@ lab:
 
 먼저 레이크하우스에 새 레이크하우스와 대상 폴더를 만듭니다.
 
-1. 작업 영역에서 **+ 새 > 레이크하우스**를 선택하고 이름을 제공하고 **만들기**를 선택합니다.
+1. 작업 영역에서 **+ 새 항목 > 레이크하우스**를 선택하고 이름을 제공하고 **만들기**를 선택합니다.
 
     > **참고:** **테이블** 또는 **파일**이 없는 새 레이크하우스를 만드는 데 몇 분 정도 걸릴 수 있습니다.
 
@@ -85,15 +85,15 @@ lab:
 1. **새 코드 셀**에 다음 코드를 삽입합니다.
 
     ```python
-        # Declare file name    
-        file_name = "yellow_taxi"
+    # Declare file name    
+    file_name = "yellow_taxi"
     
-        # Construct destination path
-        output_parquet_path = f"**InsertABFSPathHere**/{file_name}"
-        print(output_parquet_path)
+    # Construct destination path
+    output_parquet_path = f"**InsertABFSPathHere**/{file_name}"
+    print(output_parquet_path)
         
-        # Load the first 1000 rows as a Parquet file
-        blob_df.limit(1000).write.mode("overwrite").parquet(output_parquet_path)
+    # Load the first 1000 rows as a Parquet file
+    blob_df.limit(1000).write.mode("overwrite").parquet(output_parquet_path)
     ```
 
 1. **RawData** ABFS 경로를 추가하고 **&#9655; 셀 실행**을 선택하여 yellow_taxi.parquet 파일에 1000개의 행을 씁니다.
@@ -120,7 +120,7 @@ lab:
     filtered_df = raw_df.withColumn("dataload_datetime", current_timestamp())
     
     # Filter columns to exclude any NULL values in storeAndFwdFlag
-    filtered_df = filtered_df.filter(raw_df["storeAndFwdFlag"].isNotNull())
+    filtered_df = filtered_df.filter(col("storeAndFwdFlag").isNotNull())
     
     # Load the filtered data into a Delta table
     table_name = "yellow_taxi"
@@ -177,5 +177,5 @@ lab:
 탐색을 마치면 이 연습에서 만든 작업 영역을 삭제해도 됩니다.
 
 1. 왼쪽 막대에서 작업 영역의 아이콘을 선택하여 포함된 모든 항목을 봅니다.
-2. 도구 모음의 **...** 메뉴에서 **작업 영역 설정**을 선택합니다.
-3. **일반** 섹션에서 **이 작업 영역 제거**를 선택합니다.
+1. **작업 영역 설정**을 선택하고 **일반** 섹션에서 아래로 스크롤하여 **이 작업 영역 제거**를 선택합니다.
+1. **삭제**를 선택하여 작업 영역을 삭제합니다.
