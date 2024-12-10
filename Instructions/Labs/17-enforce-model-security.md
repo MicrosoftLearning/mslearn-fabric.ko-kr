@@ -101,37 +101,30 @@ lab:
 
     ![](Images/enforce-model-security-image13.png)
 
-4. **역할 관리** 창에서 **만들기**를 선택합니다.
+4. **역할 관리** 창에서 **+ 새로 만들기**를 선택합니다.
 
-    ![](Images/enforce-model-security-image14.png)
+5. 역할의 이름을 지정하려면 선택한 *제목 없음* 텍스트를 **Australia**로 바꾼 다음 **Enter** 키를 누릅니다.
 
-5. 역할의 이름을 지정하려면 선택한 텍스트를 **Australia**로 바꾼 다음 **Enter** 키를 누릅니다.
-
-    ![](Images/enforce-model-security-image15.png)
-
-6. **테이블** 목록에서 **Sales Territory** 테이블에 해당하는 줄임표를 선택한 다음 **필터 추가** > **[Region]** 을 선택합니다.
+6. **테이블 선택** 목록에서 **Sales Territory**를 선택한 다음 **데이터 필터** 섹션에서 **+ 새로 만들기**를 선택합니다.
+  
+7. 새 규칙 행에서 다음 설정을 지정합니다.
+    * **열**: Region
+    * **조건**:같음
+    * **값**: Australia
 
     ![](Images/enforce-model-security-image16.png)
 
-7. **테이블 필터 DAX 식** 상자에서 **Value**를 **Australia**로 바꿉니다.
+    *이 규칙은 **Region**열을 **Australia** 값으로 필터링합니다.*
 
-    ![](Images/enforce-model-security-image17.png)
+10. 다른 역할을 만들려면 **역할** 섹션에서 **+ 새로 만들기**를 누릅니다.
 
-    이 식은 **Region** 열을 값 **Australia**로 필터링합니다.**
-
-8. 다른 역할을 만들려면 **만들기**를 누릅니다.
-
-    ![](Images/enforce-model-security-image18.png)
-
-9. 이 작업의 단계를 반복하여 **Canada**를 기준으로 **Region** 열을 필터링하는 **Canada**라는 역할을 만듭니다.
+11. 이 작업의 단계를 반복하여 **Canada**를 기준으로 **Region** 열을 필터링하는 **Canada**라는 역할을 만듭니다.
 
     ![](Images/enforce-model-security-image19.png)
 
     이 랩에서는 역할을 두 개만 만듭니다. 그러나 실제 솔루션에서는 11개 Adventure Works 지역 각각에 대한 역할을 만들어야 합니다.**
 
-10. **저장**을 선택합니다.
-
-    ![](Images/enforce-model-security-image20.png)
+12. **저장**을 선택합니다.
 
 ### 정적 역할의 유효성 검사
 
@@ -247,19 +240,13 @@ lab:
 
     ![](Images/enforce-model-security-image39.png)
 
-5. **역할 관리** 창에서 첫 번째 역할을 제거하려면 **삭제**를 선택합니다.
+5. **역할 관리** 창에서 첫 번째 역할을 제거하려면 해당 역할 옆에 있는 줄임표를 선택한 후 **삭제**를 선택합니다.
 
     ![](Images/enforce-model-security-image40.png)
 
-6. 삭제를 확인하라는 메시지가 표시되면 **예, 삭제합니다**를 누릅니다.
+6. 또한 두 번째 역할을 제거합니다.
 
-    ![](Images/enforce-model-security-image41.png)
-
-7. 또한 두 번째 역할을 제거합니다.
-
-8. **저장**을 선택합니다.
-
-    ![](Images/enforce-model-security-image42.png)
+7. **저장**을 선택합니다.
 
 ## 동적 역할 만들기
 
