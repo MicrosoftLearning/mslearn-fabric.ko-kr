@@ -1,16 +1,16 @@
 ---
 lab:
-  title: Microsoft Fabric 이벤트 하우스에서 데이터 작업
+  title: Microsoft Fabric Eventhouse에서 데이터 작업
   module: Work with data in a Microsoft Fabric eventhouse
 ---
 
-# Microsoft Fabric 이벤트 하우스에서 데이터 작업
+# Microsoft Fabric Eventhouse에서 데이터 작업
 
-Microsoft Fabric에서는 이벤트와 관련된 실시간 데이터를 저장하는 데 *이벤트 하우스*가 사용되며, 종종 스트리밍 데이터 원본에서 *이벤트 스트림*으로 캡처합니다.
+Microsoft Fabric에서는 이벤트와 관련된 실시간 데이터를 저장하는 데 *Eventhouse*가 사용되며, 종종 스트리밍 데이터 원본에서 *Eventstream*으로 캡처합니다.
 
-이벤트 하우스 내에서 데이터는 하나 이상의 KQL 데이터베이스에 저장되며, 각 데이터베이스에는 KQL(Kusto 쿼리 언어) 또는 SQL(구조적 쿼리 언어) 하위 집합을 사용하여 쿼리할 수 있는 테이블 및 기타 개체가 포함됩니다.
+Eventhouse 내에서 데이터는 하나 이상의 KQL 데이터베이스에 저장되며, 각 데이터베이스에는 KQL(Kusto 쿼리 언어) 또는 SQL(구조적 쿼리 언어) 하위 집합을 사용하여 쿼리할 수 있는 테이블 및 기타 개체가 포함됩니다.
 
-이 연습에서는 택시 승차와 관련된 몇 가지 샘플 데이터로 이벤트 하우스를 만들고 채운 다음 KQL 및 SQL을 사용하여 데이터를 쿼리합니다.
+이 연습에서는 택시 승차와 관련된 몇 가지 샘플 데이터로 Eventhouse를 만들고 채운 다음 KQL 및 SQL을 사용하여 데이터를 쿼리합니다.
 
 이 연습을 완료하는 데 약 **25**분이 소요됩니다.
 
@@ -27,16 +27,16 @@ Fabric에서 데이터를 작업하기 전에 Fabric 용량이 활성화된 작�
 
 ## Eventhouse 만들기
 
-이제 Fabric 용량을 지원하는 작업 영역이 있으므로 이벤트 하우스를 만들 수 있습니다.
+이제 Fabric 용량을 지원하는 작업 영역이 있으므로 Eventhouse를 만들 수 있습니다.
 
 1. **실시간 인텔리전스** 홈페이지에서 선택한 이름으로 새 **Eventhouse**를 만듭니다. 이벤트 하우스가 만들어지면 이벤트 하우스 페이지가 표시될 때까지 표시되는 프롬프트 또는 팁을 닫습니다.
 
    ![새 이벤트 하우스의 스크린샷.](./Images/create-eventhouse.png)
 
-1. 왼쪽 창에서 이벤트 하우스에는 이벤트 하우스와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
+1. 왼쪽 창의 Eventhouse에는 Eventhouse와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
 1. KQL 데이터베이스를 선택하여 확인합니다.
 
-    현재 데이터베이스에는 테이블이 없습니다. 이 연습의 나머지 부분에서는 이벤트 스트림을 사용하여 실시간 원본에서 테이블로 데이터를 로드합니다.
+    현재 데이터베이스에는 테이블이 없습니다. 이 연습의 나머지 부분에서는 Eventstream을 사용하여 실시간 원본에서 테이블로 데이터를 로드합니다.
    
 1. KQL 데이터베이스 페이지에서 **데이터 가져오기** > **샘플**을 선택합니다. 그런 다음 **Automotive operations analytics** 샘플 데이터를 선택합니다.
 
@@ -163,7 +163,7 @@ KQL 데이터베이스는 기본적으로 Transact-SQL을 지원하지 않지만
 
 1. 쿼리 세트에서 다음 Transact-SQL 쿼리를 추가하고 실행합니다. 
 
-    ```sql  
+    ```sql
     SELECT TOP 100 * from Automotive
     ```
 
