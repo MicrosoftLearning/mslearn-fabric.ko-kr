@@ -6,175 +6,280 @@ lab:
 
 # Microsoft Fabric의 실시간 대시보드 시작
 
-실시간 대시보드를 사용하면 KQL(Kusto 쿼리 언어)을 통해 Microsoft Fabric 내에서 인사이트를 수집하여 구조적 데이터와 비구조적 데이터를 모두 검색하고 Power BI 내의 슬라이서와 유사한 연결을 허용하는 패널 내에서 차트, 산점도, 테이블 등으로 렌더링할 수 있습니다. 
+Microsoft Fabric의 실시간 대시보드를 사용하면 KQL(Kusto 쿼리 언어)을 사용하여 스트리밍 데이터를 시각화하고 탐색할 수 있습니다.  이 연습에서는 실시간 데이터 원본을 기반으로 실시간 대시보드를 만들고 사용하는 방법을 살펴봅니다.
 
 이 랩을 완료하는 데 약 **25**분이 소요됩니다.
 
-> **참고**: [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다. 이 연습을 완료하려면
+> **참고**: 이 연습을 완료하려면 [Microsoft Fabric 테넌트](https://learn.microsoft.com/fabric/get-started/fabric-trial)가 필요합니다.
 
 ## 작업 영역 만들기
 
-패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
+Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 테넌트에서 작업 영역을 만들어야 합니다.
 
 1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **실시간 인텔리전스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
-1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다. 또는 기존 작업 영역을 사용하여 실시간 대시보드를 빌드할 수 있습니다.
+1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
 
     ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
-이 랩에서는 Fabric의 실시간 인텔리전스를 사용하여 실시간 대시보드를 만듭니다. 실시간 인텔리전스는 실시간 인텔리전스의 기능을 탐색하는 데 사용할 수 있는 샘플 데이터 세트를 편리하게 제공합니다. 이 샘플 데이터를 사용하여 실시간 데이터를 분석하고 다운스트림 프로세스에서 다른 용도로 사용할 수 있는 KQL | SQL 쿼리 및 쿼리 세트를 만듭니다.
+## Eventhouse 만들기
+
+이제 작업 영역이 있으므로 실시간 인텔리전스 솔루션에 필요한 Fabric 항목 만들기를 시작할 수 있습니다. 먼저 Eventhouse를 만들어 보겠습니다.
+
+1. 왼쪽 메뉴 모음에서 **홈**을 선택한 다음 실시간 인텔리전스 홈 페이지에서 새 **Eventhouse**를 만들어, 원하는 고유한 이름을 지정합니다.
+1. 빈 Eventhouse가 새로 표시될 때까지 표시되는 팁이나 프롬프트를 닫습니다.
+
+    ![새 Eventhouse의 스크린샷](./Images/create-eventhouse.png)
+
+1. 왼쪽 창의 Eventhouse에는 Eventhouse와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
+1. KQL 데이터베이스를 선택하여 확인합니다.
+
+## Eventstream 만들기
+
+현재 데이터베이스에는 테이블이 없습니다. Eventstream을 사용하여 실시간 원본의 데이터를 테이블로 로드합니다.
+
+1. KQL 데이터베이스의 기본 페이지에서 **데이터 가져오기**를 선택합니다.
+2. 데이터 원본에 대해 **Eventstream** > **새 Eventstream**을 선택합니다. Eventstream의 이름을 `Bicycle-data`(으)로 지정합니다.
+
+    ![새 eventstream의 스크린샷.](./Images/empty-eventstream.png)
+
+    작업 영역에서 새 이벤트 스트림 만들기는 몇 분 안에 완료됩니다. 설정되면 Eventstream에 대한 데이터 원본을 선택하도록 자동으로 리디렉션됩니다.
+
+1. **샘플 데이터 사용**을 선택합니다.
+1. 원본 이름을 `Bicycles`(으)로 지정하고 **Bicycles** 샘플 데이터를 선택합니다.
+
+    스트림이 매핑되고 **eventstream 캔버스**에 자동으로 표시됩니다.
+
+   ![eventstream 캔버스 검토](./Images/real-time-intelligence-eventstream-sourced.png)
+
+1. **대상 추가** 드롭다운 목록에서 **Eventhouse**를 선택합니다.
+1. **Eventhouse** 창에서 다음 설정 옵션을 구성합니다.
+   - **데이터 수집 모드:**: 수집 전 이벤트 처리
+   - **대상 이름:**`bikes-table`
+   - **작업 영역:***이 연습의 시작 부분에서 만든 작업 영역 선택*
+   - **Eventhouse**: *eventhouse 선택*
+   - **KQL 데이터베이스:***KQL 데이터베이스 선택*
+   - **대상 테이블:** 이름이 지정된 새 테이블 만들기 `bikes`
+   - **입력 데이터 형식:** JSON
+
+   ![Eventstream 대상 설정.](./Images/kql-database-event-processing-before-ingestion.png)
+
+1. **Eventhouse** 창에서 **저장**을 선택합니다. 
+1. **Bicycles-data** 노드의 출력을 **bikes-table** 노드에 연결한 다음 **게시**를 선택합니다.
+1. 데이터 대상이 활성화될 때까지 잠시 1분 정도 기다립니다. 그런 다음, 디자인 캔버스에서 **bikes-table** 노드를 선택하고 아래의 **데이터 미리 보기** 창을 확인하여 수집된 최신 데이터를 확인합니다.
+
+   ![Eventstream의 대상 테이블 스크린샷.](./Images/stream-data-preview.png)
+
+1. 몇 분 기다린 다음 **새로 고침** 버튼을 사용하여 **데이터 미리 보기** 창을 새로 고칩니다. 스트림이 영구적으로 실행되므로 새 데이터가 테이블에 추가되었을 수 있습니다.
 
 ## 실시간 대시보드 만들기
 
-1. **실시간 인텔리전스** 내에서 **실시간 대시보드** 상자를 선택합니다.
+이제 Eventhouse의 테이블에 실시간 데이터 스트림을 로드했으므로 실시간 대시보드를 사용하여 시각화할 수 있습니다.
 
-   ![실시간 대시보드 선택 이미지](./Images/create-real-time-dashboard.png)
+1. 왼쪽 메뉴 모음에서 **홈** 허브를 선택합니다. 그런 다음 홈페이지에서 `bikes-dashboard`(이)라는 이름의 **실시간 대시보드**를 새로 만듭니다.
 
-2. 실시간 대시보드의 **이름을 지정**하라는 메시지가 표시됩니다.
+    빈 대시보드가 새로 만들어집니다.
 
-   ![실시간 대시보드라는 이름의 이미지.](./Images/new-real-time-dashboard.png)
 
-3. 기본 원본을 기반으로 하는 이름과 같이 기억하기 쉬운 이름을 실시간 대시보드에 지정하고 **만들기**를 누릅니다.
+    ![새 대시보드의 스크린샷.](./Images/new-dashboard.png)
 
-4. **데이터베이스 세부 정보** 패널에서 연필 아이콘을 선택하여 OneLake의 가용성을 활성화합니다.
+1. 도구 모음에서 **새 데이터 원본**을 선택하고 새 **OneLake 데이터 허브** 데이터 원본을 추가합니다. 그런 다음, Eventhouse를 선택하고 다음 설정을 사용하여 새 데이터 원본을 만듭니다.
+    - **표시 이름**: `Bike Rental Data`
+    - **데이터베이스**: *Eventhouse*의 기본 데이터베이스입니다.
+    - **통과 ID**: *선택됨*
 
-   [ ![onelake를 사용하도록 설정하는 이미지.](./Images/real-time-dashboard-details.png)](./Images/real-time-dashboard-details-large.png#lightbox)
+1. **데이터 원본** 창을 닫은 다음 대시보드 디자인 캔버스에서 **타일 추가**를 선택합니다.
+1. 쿼리 편집기에서 **Bike Rental Data** 원본이 선택되었는지 확인하고 다음 KQL 코드를 입력합니다.
 
-## ‘데이터 원본 추가’
+    ```kql
+    bikes
+        | where ingestion_time() between (ago(30min) .. now())
+        | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood
+        | project Neighbourhood, latest_observation, No_Bikes, No_Empty_Docks
+        | order by Neighbourhood asc
+    ```
 
-데이터 원본은 실시간 대시보드와 동일한 작업 영역 내에서 특정 데이터베이스 또는 쿼리에 대한 재사용 가능한 참조 역할을 하므로 다양한 타일에서 데이터 요구 사항에 따라 고유한 데이터 원본을 활용할 수 있습니다.
+1. 지난 30분 동안 각 지역에서 관찰된 자전거 수 및 빈 자전거 도크 수를 보여주는 쿼리를 실행합니다.
+1. 변경 내용을 적용하여 대시보드의 타일에 있는 테이블에 표시된 데이터를 확인합니다.
 
-1. **관리** 탭을 선택한 다음 ***메뉴 모음***에서 **새 데이터 원본**을 선택합니다.
-1. **데이터 원본** 창에서 **+ 추가** 단추를 선택합니다.
+   ![테이블이 포함된 타일이 있는 대시보드의 스크린샷.](./Images/tile-table.png)
 
-    [ ![실시간 대시보드에 새 데이터 원본을 추가합니다.](./Images/add-data-source-to-real-time-dashboard-large.png) ](./Images/add-data-source-to-real-time-dashboard-large.png#lightbox) 
+1. 타일에서 **편집** 아이콘(연필 모양)을 선택합니다. 그런 다음 **시각적 개체 서식** 창에서 다음 속성을 설정합니다.
+    - **타일 이름**: 자전거 및 도크
+    - **시각적 개체 유형**: 막대형 차트
+    - **시각적 개체 서식**: 누적 가로 막대형 차트
+    - **Y 열**: No_Bikes, No-Empty_Docks
+    - **X 열**: 지역
+    - **계열 열**: 유추
+    - **범례 위치**: 맨 아래
 
-1. **OneLake 데이터 허브** 또는 **Azure Data Explorer**의 두 가지 기본 옵션 중 하나를 선택합니다.
+    편집된 시간은 다음과 같이 표시되어야 합니다.
 
-    ![실시간 대시보드에 대한 데이터 원본을 선택합니다.](./Images/data-source-options-real-time-dashboards.png)
+   ![막대형 차트를 포함하도록 편집 중인 타일의 스크린샷.](./Images/tile-bar-chart.png)
 
-1. 사용자의 비즈니스 요구에 맞는 **데이터 원본**을 선택한 다음 **연결** 단추를 선택합니다.
+1. 변경 내용을 적용한 대시보드 왼쪽의 전체 높이를 차지하도록 타일의 크기를 조정합니다.
 
-    [ ![적절한 데이터 원본을 선택합니다.](./Images/select-onelake-data-hub.png) ](./Images/select-onelake-data-hub-large.png#lightbox) 
+1. 도구 모음에서 **새 타일**을 선택합니다.
+1. 쿼리 편집기에서 **Bike Rental Data** 원본이 선택되었는지 확인하고 다음 KQL 코드를 입력합니다.
 
-    > **참고** 데이터 원본에 연결하면 선택한 위치 내에서 추가 데이터 원본을 확인하고 만들 수 있습니다.
+    ```kql
+    bikes
+        | where ingestion_time() between (ago(30min) .. now())
+        | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood
+        | project Neighbourhood, latest_observation, Latitude, Longitude, No_Bikes
+        | order by Neighbourhood asc
+    ```
 
-1. **새 데이터 원본 만들기** 창에서 **데이터 원본** 연결을 확인하고 **만들기**를 선택합니다.
+1. 쿼리를 실행합니다. 이 쿼리는 지난 30분 동안 각 지역에서 관찰된 자전거의 위치와 수를 보여 줍니다.
+1. 변경 내용을 적용하여 대시보드의 타일에 있는 테이블에 표시된 데이터를 확인합니다.
+1. 타일에서 **편집** 아이콘(연필 모양)을 선택합니다. 그런 다음 **시각적 개체 서식** 창에서 다음 속성을 설정합니다.
+    - **타일 이름**: 자전거 위치
+    - **시각적 개체 유형**: 지도
+    - **위치 정의 기준**: 위도 및 경도
+    - **위도 열**: 위도
+    - **경도 열**: 경도
+    - **레이블 열**: 지역
+    - **크기**: 표시
+    - **크기 열**: No_Bikes
 
-    [ ![새 데이터 원본 만들기에서 데이터베이스를 확인합니다.](./Images/conected-now-create-datasource.png) ](./Images/conected-now-create-datasource-large.png#lightbox) 
+1. 변경 사항을 적용한 다음 대시보드에서 사용 가능한 공간의 오른쪽을 채우도록 지도 타일의 크기를 조정합니다.
 
-1. 이 시점에서 **페이지 n** 오른쪽에 있는 줄임표 **...** 를 선택하고 타일 용도에 적절한 이름으로 **페이지 이름 바꾸기**를 선택합니다.
-1. **+ 타일 추가** 선택
+   ![차트와 지도가 있는 대시보드의 스크린샷.](./Images/dashboard-chart-map.png)
 
-    [ ![페이지 이름을 바꾸고 타일을 추가합니다.](./Images/rename-page-add-tile.png) ](./Images/rename-page-add-tile-large.png#lightbox) 
+## 기본 쿼리 만들기
 
-1. 매개 변수를 추가하고 타일을 지원하기 위한 기본 쿼리를 끌어올 수 있는 **타일 쿼리 창**으로 리디렉션됩니다. 
+대시보드에는 유사한 쿼리를 기반으로 하는 두 개의 시각적 개체가 포함되어 있습니다. 중복을 방지하고 대시보드를 더 쉽게 유지 관리하기 위해 공통 데이터를 단일 *기본 쿼리*로 통합할 수 있습니다.
 
-    [ ![쿼리 창 및 새 데이터 원본 추가 창.](./Images/write-query-for-tile.png) ](./Images/write-query-for-tile-large.png#lightbox) 
+1. 대시보드 도구 모음에서 **기본 쿼리**를 선택합니다. 그런 다음, **+ 추가**를 선택합니다.
+1. 기본 쿼리 편집기에서 **변수 이름**을 `base_bike_data`(으)로 설정하고 **자전거 대여 데이터** 원본이 선택되어 있는지 확인합니다. 다음 쿼리를 입력합니다.
 
-    > **참고** 동일한 창의 드롭다운 창에 새 데이터 원본을 추가할 수 있는 옵션이 있습니다. 이 원본은 개인 작업 영역 내에 있거나 액세스 가능한 Evenhouse 내에 다른 KQL 데이터베이스가 저장된 작업 영역 내에 있을 수도 있습니다.
+    ```kql
+    bikes
+        | where ingestion_time() between (ago(30min) .. now())
+        | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood
 
-## 쿼리 작성
+1. Run the query and verify that it returns all of the columns needed for both visuals in the dashboard (and some others).
 
-실시간 대시보드 타일은 Kusto 쿼리 언어 코드 조각을 사용하여 데이터를 검색하고 시각적 개체를 렌더링합니다. 각 타일/쿼리에서 단일 시각적 개체를 지원할 수 있습니다.
+   ![A screenshot of a base query.](./Images/dashboard-base-query.png)
 
-1. 각 타일 내에서 새 타일이나 기존 타일에 고정하기로 선택한 경우 **Copilot**에서 쓰거나 붙여넣은 다음 필요에 맞게 수정할 수 있습니다. 간단한 쿼리만으로 자전거 수에 따라 맵의 크기를 사용하는 맵 시각화를 만들 수 있습니다.
+1. Select **Done** and then close the **Base queries** pane.
+1. Edit the **Bikes and Docks** bar chart visual, and change the query to the following code:
 
-```kusto
+    ```kql
+    base_bike_data
+    | project Neighbourhood, latest_observation, No_Bikes, No_Empty_Docks
+    | order by Neighbourhood asc
+    ```
 
-['Bike-count']
-BikepointID, Latitude, Longitude, No_Bikes
+1. 변경 내용을 적용하고 막대형 차트에 모든 지역의 데이터가 계속 표시되는지 확인합니다.
 
-```
+1. **자전거 위치** 지도 시각적 개체를 편집하고 쿼리를 다음 코드로 변경합니다.
 
-## 시각화 만들기
+    ```kql
+    base_bike_data
+    | project Neighbourhood, latest_observation, No_Bikes, Latitude, Longitude
+    | order by Neighbourhood asc
+    ```
 
-시각화가 만족스러우면 **변경 내용 적용**을 선택한 다음 실시간 대시보드를 지원하기 위해 추가 시각화를 추가하거나 **매개 변수** 또는 **일정**과 같은 추가 단계를 수행합니다.
-
-   [ ![KQL 쿼리에서 시각화를 만듭니다.](./Images/create-visual-in-tiles.png) ](./Images/create-visual-in-tiles-large.png#lightbox) 
-
-변경 내용이 적용되면 데이터가 표시되며 사용자의 가독성과 이해를 위해 조정할 수 있습니다.
-
-   [ ![자전거 시각화 맵에 변경 내용이 적용되었습니다.](./Images/first-published-visual.png) ](./Images/first-published-visual-large.png#lightbox) 
-
-사용자 커뮤니티가 쉽게 이해할 수 있도록 테이블 정보와 시각화 정보가 포함된 **새 타일**을 계속 만들 수 있습니다. 앞서 설명한 것처럼 **페이지 추가**, **새 데이터 원본** 기능도 있습니다. 다음으로 사용자에게 표시되는 정보의 양을 탐색하고 줄이는 데 도움이 되는 매개 변수를 추가하는 데 중점을 둘 것입니다.
+1. 변경 내용을 적용하고 지도에 모든 지역의 데이터가 계속 표시되는지 확인합니다.
 
 ## 매개 변수 추가
-매개 변수는 대시보드 렌더링의 효율성을 향상시키고 쿼리 프로세스의 초기 단계에서 필터 값을 활용할 수 있도록 합니다. 타일에 연결된 쿼리에 매개 변수를 포함하면 필터링 기능이 활성화됩니다. 매개 변수는 대시보드 전체에서 활용될 수 있으며 여러 매개 변수는 테이블을 포함한 기본 시각화에 표시된 데이터를 필터링할 수 있습니다.
 
-매개 변수 만들기는 다음과 같이 쉽게 시작됩니다. 
+대시보드에는 현재 모든 지역의 최신 자전거, 도크 및 위치 데이터가 표시됩니다. 이제 특정 지역을 선택할 수 있도록 매개 변수를 추가할 수 있습니다.
 
-1. 상단 메뉴에서 새 매개 변수 단추를 선택합니다. 매개 변수 창이 열립니다.
-1. 오른쪽 창 상단에 있는 + 추가 단추를 선택합니다.
+1. 대시보드 도구 모음의 **관리** 탭에서 **매개 변수**를 선택합니다.
+1. 자동으로 생성된 기존 매개 변수(예: *시간 범위* 매개 변수)를 기록해 둡니다. 그런 다음 **삭제**합니다.
+1. **+ 추가**를 선택합니다.
+1. 다음 설정으로 매개 변수를 추가합니다.
+    - **레이블:** `Neighbourhood`
+    - **매개 변수 형식**: 다중 선택
+    - **설명**: `Choose neighbourhoods`
+    - **변수 이름**: `selected_neighbourhoods`
+    - **데이터 형식**: 문자열
+    - **페이지에 표시**: 모두 선택
+    - **원본**: 쿼리
+    - **데이터 원본**: 자전거 대여 데이터
+    - **쿼리 편집**:
 
-    [ ![새 매개 변수 추가.](./Images/add-new-parameter.png) ](./Images/add-new-parameter-large.png#lightbox) 
+        ```kql
+        bikes
+        | distinct Neighbourhood
+        | order by Neighbourhood asc
+        ```
 
-1. 매개 변수에 대한 관련 속성을 입력합니다.
+    - **값 열**: 지역
+    - **레이블 열**: 값 선택 영역 일치
+    - **"모두 선택" 값 추가**: *선택됨*
+    - **"모두 선택"은 빈 문자열을 보냄**: *선택됨*
+    - **기본값으로 자동 재설정**: 선택됨
+    - **기본값**: 모두 선택
 
-    [ ![매개 변수 설정을 구성합니다.](./Images/configure-parameter.png) ](./Images/configure-parameter-large.png#lightbox) 
+1. **완료**를 선택하여 매개 변수를 만듭니다.
 
-1. 매개 변수의 가장 중요한 기능 중 하나는 **쿼리를 추가**하여 기본 정보와 관련된 옵션만 사용자에게 제공하는 기능입니다.
+    이제 매개 변수를 추가했으므로 기본 쿼리를 수정하여 선택한 지역에 따라 데이터를 필터링해야 합니다.
 
-    ![매개 변수 선택에 쿼리를 추가합니다.](./Images/add-lookup-query.png)
+1. 도구 모음에서 **기본 쿼리**를 선택합니다. 그런 다음 **base_bike_data** 쿼리를 선택하고 다음 코드와 같이 **where** 절에 **and** 조건을 추가하여 선택한 매개 변수 값을 기준으로 필터링하도록 편집합니다.
 
-1. 완료를 선택하여 매개 변수를 만듭니다.
+    ```kql
+    bikes
+        | where ingestion_time() between (ago(30min) .. now())
+          and (isempty(['selected_neighbourhoods']) or Neighbourhood  in (['selected_neighbourhoods']))
+        | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood
+    ```
 
-    [ ![구성을 완료하고 매개 변수 설정에서 완료를 선택합니다.](./Images/complete-parameter-settings.png) ](./Images/complete-parameter-settings-large.png#lightbox) 
+1. **완료**를 선택하여 기본 쿼리를 저장합니다.
 
-### 매개 변수 속성
+1. 대시보드에서 **지역** 매개 변수를 사용하여 선택한 지역을 기준으로 데이터를 필터링합니다.
 
-| 필드            | 설명 |
-|------------------|-------------|
-| **Label**        | 대시보드 또는 편집 카드에 표시되는 매개 변수의 이름입니다. |
-| **매개 변수 형식** | 다음 형식 중 하나: <ul><li>단일 선택: 필터에서 매개 변수에 대한 입력으로 하나의 값만 선택할 수 있습니다.</li><li>다중 선택: 매개 변수에 대한 입력으로 필터에서 하나 이상의 값을 선택할 수 있습니다.</li><li>시간 범위: 시간을 기준으로 쿼리 및 대시보드를 필터링하기 위한 추가 매개 변수 만들기를 사용하도록 설정합니다. 모든 대시보드에는 기본 시간 범위 선택기가 있습니다.</li><li>자유 텍스트: 사용자가 값을 미리 채우지 않고 필터 필드에 값을 입력하거나 붙여넣고 최근에 사용한 값을 보존할 수 있습니다.</li></ul> |
-| **설명**  | 매개 변수에 대한 선택적 설명입니다. |
-| **변수 이름** | 쿼리 내 매개 변수에 사용되는 이름입니다. |
-| **데이터 형식**    | 매개 변수 값이 나타내는 데이터 형식입니다. |
-| **페이지에 표시** | 모든 페이지를 선택하는 옵션과 함께 매개 변수가 표시되는 페이지입니다. |
-| **Source**       | 매개 변수 값의 원본은 다음과 같습니다. <ul><li>고정 값: 수동으로 입력한 정적 필터 값입니다.</li><li>쿼리: KQL 쿼리를 사용하여 도입된 동적 값입니다.</li></ul> |
-| **"모두 선택" 값 추가** | 단일 및 다중 선택 매개 변수 형식에 적용할 수 있는 이 옵션은 모든 매개 변수 값에 대한 데이터를 검색하며 기능을 위해 쿼리에 통합되어야 합니다. |
-| **기본값** | 대시보드의 초기 렌더링 시 설정되는 필터의 기본값입니다. |
+   ![매개 변수가 선택된 대시보드의 스크린샷.](./Images/dashboard-parameters.png)
 
-6. 타일 내의 각 쿼리에 매개 변수를 추가했는지 확인한 다음 **변경 내용 적용**을 선택합니다.
+1. **다시 설정**을 선택하면 선택한 매개 변수 필터를 제거할 수 있습니다.
 
-**KQL 쿼리 전**
-```kusto
-//Add the street parameter to each tile's query
-['bike-count']
-| where No_Bikes > 0
-| project BikepointID, Latitude, Longitude, No_Bikes
+## 페이지 추가
 
-```
+대시보드는 현재 단일 페이지로 구성됩니다. 더 많은 페이지를 추가하여 더 많은 데이터를 제공할 수 있습니다.
 
-**KQL 쿼리 후**
-```kusto
-//Add the street parameter to each tile's query
-['bike-count']
-| where No_Bikes > 0 and Street == street
-| project BikepointID, Latitude, Longitude, No_Bikes
+1. 대시보드 왼쪽에서 **페이지** 창을 확장하고 **+ 페이지 추가**를 선택합니다.
+1. 새 페이지의 이름을 **페이지 2**로 지정합니다. 그런 다음 선택합니다.
+1. 새 페이지에서 **+ 타일 추가**를 선택합니다.
+1. 새 타일의 쿼리 편집기에서 다음 쿼리를 입력합니다.
 
-```
-   [ ![매개 변수를 포함하도록 타일의 각 쿼리를 업데이트합니다.](./Images/update-each-query.png) ](./Images/update-each-query-large.png#lightbox) 
+    ```kql
+    base_bike_data
+    | project Neighbourhood, latest_observation
+    | order by latest_observation desc
+    ```
 
-## 자동 새로 고침 사용
+1. 변경 내용을 적용합니다. 그런 다음 타일의 크기를 조정하여 대시보드 높이를 채웁니다.
 
-자동 새로 고침은 수동으로 페이지를 다시 로드하거나 새로 고침 단추를 누를 필요 없이 대시보드 데이터를 자동으로 업데이트할 수 있는 기능입니다. 초기 자동 새로 고침 빈도는 데이터베이스 편집기로 구성할 수 있습니다. 편집자와 뷰어 모두 대시보드를 보는 동안 실제 자동 새로 고침 빈도를 편집할 수 있습니다. 데이터베이스 편집자는 클러스터의 과도한 로드를 완화하기 위해 최소 새로 고침 빈도를 설정할 권한이 있습니다. 이 최소 속도가 설정되면 데이터베이스 사용자는 지정된 최솟값보다 낮은 새로 고침 빈도를 선택하는 것이 제한됩니다. 이렇게 하면 리소스에 과도한 부담을 주지 않고 시스템 성능이 유지됩니다.
+   ![두 페이지로 구성된 대시보드 스크린샷](./Images/dashboard-page-2.png)
 
-1. 관리 탭 > 자동 새로 고침을 선택합니다.
+## 자동 새로 고침 구성
 
-    [ ![자동 새로 고침 기능을 사용하도록 설정합니다.](./Images/enable-auto-refresh.png) ](./Images/enable-auto-refresh-large.png#lightbox) 
+사용자는 대시보드를 수동으로 새로 고칠 수 있지만, 설정된 간격으로 데이터를 자동으로 새로 고치도록 설정하는 것이 유용할 수 있습니다.
 
-1. 자동 새로 고침이 사용이 되도록 옵션을 전환합니다.
-1. 최소 시간 간격 및 기본 새로 고침 빈도에 대한 값을 선택합니다.
-1. 적용을 선택한 다음, 대시보드를 저장합니다.
+1. 대시보드 도구 모음의 **관리** 탭에서 **자동 새로 고침**을 선택합니다.
+1. **자동 새로 고침** 창에서 다음 설정을 구성합니다.
+    - **활성화됨**: *선택됨*
+    - **최소 시간 간격**: 모든 새로 고침 간격 허용
+    - **기본 새로 고침 빈도**: 30분
+1. 자동 새로 고침 설정을 적용합니다.
 
-    [ ![자동 새로 고침을 사용하도록 설정하고 간격을 설정합니다.](./Images/enable-and-configure-refresh-rate.png) ](./Images/enable-and-configure-refresh-rate-large.png#lightbox) 
+## 대시보드 저장 및 공유
+
+이제 유용한 대시보드가 있으므로 대시보드를 저장하고 다른 사용자와 공유할 수 있습니다.
+
+1. 대시보드 도구 모음에서 **저장**을 선택합니다.
+1. 대시보드가 저장되면 **공유**를 선택합니다.
+1. **공유** 대화 상자에서 **링크 복사**를 선택하고 대시보드의 링크를 클립보드에 복사합니다.
+1. 새 브라우저 탭을 열고 복사한 링크를 붙여넣어 공유 대시보드로 이동합니다. 메시지가 표시되면 Fabric 자격 증명으로 다시 로그인합니다.
+1. 대시보드를 탐색하여 도시 전역의 자전거 및 빈 자전거 도크에 대한 최신 정보를 확인합니다.
 
 ## 리소스 정리
 
-이 연습에서는 KQL 데이터베이스를 만들고 쿼리하기 위해 샘플 데이터 세트를 설정했습니다. 그런 다음 KQL 및 SQL을 사용하여 데이터를 쿼리했습니다. KQL 데이터베이스 탐색을 마쳤으면 이 연습을 위해 만든 작업 영역을 삭제할 수 있습니다.
-1. 왼쪽 막대에서 작업 영역의 **아이콘**을 선택합니다.
-2. 도구 모음의 ... 메뉴에서 **작업 영역 설정**을 선택합니다.
-3. **일반** 섹션에서 **이 작업 영역 제거**를 선택합니다.
+대시보드 탐색을 마치면 이 연습을 위해 만든 작업 영역을 삭제할 수 있습니다.
 
+1. 왼쪽 막대에서 작업 영역의 **아이콘**을 선택합니다.
+2. 도구 모음에서 **작업 영역 설정**을 선택합니다.
+3. **일반** 섹션에서 **이 작업 영역 제거**를 선택합니다.

@@ -16,7 +16,7 @@ Microsoft Fabric의 *모니터링 허브*는 활동을 모니터링할 수 있�
 
 Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 테넌트에서 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Synapse 데이터 엔지니어링**을 선택합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 ** 데이터 엔지니어링**을 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 **고급** 섹션에서 라이선스 모드를 선택합니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -27,7 +27,7 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 
 이제 작업 영역이 있으므로 데이터를 위한 데이터 레이크하우스를 만들어야 합니다.
 
-1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다.
+1. **데이터 엔지니어링** 홈페이지에서 원하는 이름의 새 **레이크하우스**를 만듭니다.
 
     1분 정도 지나면 새 레이크하우스가 만들어집니다.
 
@@ -48,7 +48,7 @@ Microsoft Fabric에서는 데이터 흐름(Gen2)을 사용하여 다양한 원�
     ![새 데이터 흐름의 스크린샷.](./Images/new-data-flow.png)
 
 1. 데이터 흐름 페이지의 왼쪽 상단에서 **데이터 흐름 1**을 선택하여 세부 정보를 확인하고 데이터 흐름의 이름을 **제품 데이터 가져오기**로 변경합니다.
-1. 데이터 흐름 디자이너에서 **텍스트/CSV 파일에서 가져오기**를 선택합니다. 데이터 가져오기 마법사를 완료하고 익명 인증을 사용하여 `https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/products.csv`에 연결함으로 데이터 연결을 만듭니다. 마법사를 완료하면 데이터 흐름 디자이너에 다음과 같은 데이터 미리 보기가 표시됩니다.
+1. 데이터 흐름 디자이너에서 **텍스트/CSV 파일에서 가져오기**를 선택합니다. 다음으로 데이터 가져오기 마법사를 완료하고 익명 인증을 사용하여 `https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/products.csv`에 연결함으로 데이터 연결을 만듭니다. 마법사를 완료하면 데이터 흐름 디자이너에 다음과 같은 데이터 미리 보기가 표시됩니다.
 
     ![데이터 흐름 쿼리의 스크린샷.](./Images/data-flow-query.png)
 
@@ -113,7 +113,7 @@ Microsoft Fabric에서는 Notebooks을 사용하여 Spark 코드를 실행할 �
     ![필터가 적용된 모니터링 허브의 스크린샷.](./Images/monitor-filter.png)
 
 1. **열 옵션** 버튼을 사용하여 보기에 다음 열을 포함합니다(변경 사항을 적용하려면 **적용** 버튼 사용).
-    - 활동 시간
+    - 작업 이름
     - 상태
     - 항목 유형
     - 시작 시간

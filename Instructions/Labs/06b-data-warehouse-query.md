@@ -16,7 +16,7 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **Synapse 데이터 웨어하우스**를 선택합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **데이터 웨어하우스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -183,5 +183,5 @@ SQL 쿼리 편집기는 IntelliSense, 코드 완료, 구문 강조 표시, 클�
 데이터 웨어하우스 탐색을 마쳤으면 이 연습을 위해 만든 작업 영역을 삭제할 수 있습니다.
 
 1. 왼쪽 막대에서 작업 영역의 아이콘을 선택하여 포함된 모든 항목을 봅니다.
-2. 도구 모음의 **...** 메뉴에서 **작업 영역 설정**을 선택합니다.
-3. **일반** 섹션에서 **이 작업 영역 제거**를 선택합니다.
+1. **작업 영역 설정**을 선택하고 **일반** 섹션에서 아래로 스크롤하여 **이 작업 영역 제거**를 선택합니다.
+1. **삭제**를 선택하여 작업 영역을 삭제합니다.
