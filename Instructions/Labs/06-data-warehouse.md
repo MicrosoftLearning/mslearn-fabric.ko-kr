@@ -31,7 +31,7 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
     1분 정도 지나면 새 웨어하우스가 만들어집니다.
 
-    ![새 웨어하우스의 스크린샷.](./Images/new-data-warehouse.png)
+    ![새 웨어하우스의 스크린샷.](./Images/new-data-warehouse2.png)
 
 ## 테이블 만들기 및 데이터 삽입
 

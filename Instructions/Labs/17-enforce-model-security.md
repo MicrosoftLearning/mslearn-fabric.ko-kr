@@ -190,7 +190,7 @@ lab:
 
     ![](Images/enforce-model-security-image32.png)
 
-    ***보안** 옵션은 보안 그룹 및 사용자를 포함하는 Microsoft Azure AD(Azure Active Director) 보안 주체 매핑을 지원합니다.*
+    ***보안** 옵션은 보안 그룹 및 사용자를 포함하는 Microsoft Entra 보안 주체 매핑을 지원합니다.*
 
 4. 왼쪽에는 역할 목록이 있고 **Australia**가 선택되어 있습니다.
 
