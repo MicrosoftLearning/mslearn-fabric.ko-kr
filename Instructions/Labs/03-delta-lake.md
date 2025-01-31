@@ -17,7 +17,7 @@ Microsoft Fabric 레이크하우스의 테이블은 오픈 소스 Delta Lake 형
 
 먼저 *Fabric 평가판*을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. Microsoft Fabric 홈페이지(https://app.fabric.microsoft.com)에서 **Synapse 데이터 엔지니어링** 환경을 선택합니다.
+1. Microsoft Fabric 홈페이지(`https://app.fabric.microsoft.com`)에서 **데이터 엔지니어링** 환경을 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**(🗇)을 선택합니다.
 1. Fabric 용량이 포함된 라이선스 모드(평가판, 프리미엄 또는 Fabric)를 선택하여 원하는 이름으로 **새 작업 영역**을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -28,8 +28,8 @@ Microsoft Fabric 레이크하우스의 테이블은 오픈 소스 Delta Lake 형
 
 이제 작업 영역이 생겼다면 레이크하우스를 만들어 데이터를 업로드할 차례입니다.
 
-1. **Synapse Data Engineering** 홈페이지에서 원하는 이름으로 새 **레이크하우스**를 만듭니다. 
-1. 데이터를 수집하는 방법에는 여러 가지가 있지만 이 연습에서는 텍스트 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 레이크하우스에 업로드합니다. https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv에서 [데이터 파일](https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv)을 다운로드하여 *products.csv*로 저장합니다.
+1. **데이터 엔지니어링** 홈페이지에서 원하는 이름의 새 **레이크하우스**를 만듭니다. 
+1. 데이터를 수집하는 방법에는 여러 가지가 있지만 이 연습에서는 텍스트 파일을 로컬 컴퓨터(또는 해당하는 경우 랩 VM)에 다운로드한 다음 레이크하우스에 업로드합니다. `https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv`에서 [데이터 파일](https://github.com/MicrosoftLearning/dp-data/raw/main/products.csv)을 다운로드하여 *products.csv*로 저장합니다.
 1.  레이크하우스가 포함된 웹 브라우저 탭으로 돌아가서 탐색기 창의 **파일** 폴더 옆에 있는 ... 메뉴를 선택합니다.  *products*라는 **새 하위 폴더**를 만듭니다.
 1.  products 폴더의 ... 메뉴를 통해 로컬 컴퓨터(나 해당 시 랩 VM)에서 *products.csv* 파일을 **업로드**합니다.
 1.  파일을 업로드한 후 **products** 폴더를 선택하여 여기에 나온 대로 파일이 업로드되었는지 확인합니다.
