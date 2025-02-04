@@ -18,7 +18,6 @@ Eventhouse 내에서 데이터는 하나 이상의 KQL 데이터베이스에 저
 
 Fabric에서 데이터를 작업하기 전에 Fabric 용량이 활성화된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **실시간 인텔리전스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -29,20 +28,13 @@ Fabric에서 데이터를 작업하기 전에 Fabric 용량이 활성화된 작�
 
 이제 Fabric 용량을 지원하는 작업 영역이 있으므로 Eventhouse를 만들 수 있습니다.
 
-1. **실시간 인텔리전스** 홈페이지에서 선택한 이름으로 새 **Eventhouse**를 만듭니다. 이벤트 하우스가 만들어지면 이벤트 하우스 페이지가 표시될 때까지 표시되는 프롬프트 또는 팁을 닫습니다.
+1. 왼쪽 메뉴 모음에서 **워크로드**를 선택합니다. 그런 다음 **실시간 인텔리전스** 을 선택합니다.
+1. **실시간 인텔리전스** 홈페이지의 *실시간 인텔리전스 샘플 탐색* 타일에서 **열기**를 선택합니다. **RTISample**이라는 이벤트 하우스를 자동으로 만듭니다.
 
-   ![새 이벤트 하우스의 스크린샷.](./Images/create-eventhouse.png)
+   ![샘플 데이터가 포함된 새 이벤트 하우스의 스크린샷](./Images/create-eventhouse-sample.png)
 
 1. 왼쪽 창에서 이벤트 하우스에는 이벤트 하우스와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
-1. KQL 데이터베이스를 선택하여 확인합니다.
-
-    현재 데이터베이스에는 테이블이 없습니다. 이 연습의 나머지 부분에서는 Eventstream을 사용하여 실시간 원본에서 테이블로 데이터를 로드합니다.
-   
-1. KQL 데이터베이스 페이지에서 **데이터 가져오기** > **샘플**을 선택합니다. 그런 다음 **Automotive operations analytics** 샘플 데이터를 선택합니다.
-
-1. 데이터 로드가 완료된 후(다소 시간이 걸릴 수 있음) **Automotive** 테이블이 생성되었는지 확인합니다.
-
-   ![이벤트 하우스 데이터베이스의 Automotive 테이블 스크린샷.](./Images/choose-automotive-operations-analytics.png)
+1. **Bikestream** 테이블도 만들어졌는지 확인합니다.
 
 ## KQL을 사용하여 데이터 쿼리하기
 
@@ -54,7 +46,7 @@ KQL(Kusto 쿼리 언어)은 KQL 데이터베이스를 쿼리하는 데 사용할
 1. 다음과 같이 첫 번째 예제 쿼리를 수정합니다.
 
     ```kql
-    Automotive
+    Bikestream
     | take 100
     ```
 
@@ -70,8 +62,8 @@ KQL(Kusto 쿼리 언어)은 KQL 데이터베이스를 쿼리하는 데 사용할
 
     ```kql
     // Use 'project' and 'take' to view a sample number of records in the table and check the data.
-    Automotive 
-    | project vendor_id, trip_distance
+    Bikestream
+    | project Street, No_Bikes
     | take 10
     ```
 
@@ -82,8 +74,8 @@ KQL(Kusto 쿼리 언어)은 KQL 데이터베이스를 쿼리하는 데 사용할
 1. 다음 쿼리를 시도해 봅니다.
 
     ```kql
-    Automotive 
-    | project vendor_id, ["Trip Distance"] = trip_distance
+    Bikestream 
+    | project Street, ["Number of Empty Docks"] = No_Empty_Docks
     | take 10
     ```
 
@@ -91,33 +83,35 @@ KQL(Kusto 쿼리 언어)은 KQL 데이터베이스를 쿼리하는 데 사용할
 
 *summarize* 키워드를 함수와 함께 사용하여 데이터를 집계하거나 조작할 수 있습니다.
 
-1. **sum** 함수를 사용하여 여 데이터를 요약하여 총 이동한 마일 수를 확인하는 다음 쿼리를 시도합니다.
+1. **sum** 함수를 사용하여 임대 데이터를 요약하여 총 몇 대의 자전거를 이용할 수 있는지 확인하는 다음 쿼리를 시도합니다.
 
     ```kql
 
-    Automotive
-    | summarize ["Total Trip Distance"] = sum(trip_distance)
+    Bikestream
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes)
     ```
 
     요약된 데이터를 지정된 열 또는 식을 기준으로 그룹화할 수 있습니다.
 
-1. 다음 쿼리를 실행하여 뉴욕 택시 시스템 내에서 이동 거리를 자치구별로 그룹화하여 각 자치구에서 이동한 총 거리를 확인합니다.
+1. 다음 쿼리를 실행하여 이웃별로 자전거 수를 그룹화하여 각 지역에서 사용 가능한 자전거의 수를 확인합니다.
 
     ```kql
-    Automotive
-    | summarize ["Total Trip Distance"] = sum(trip_distance) by pickup_boroname
-    | project Borough = pickup_boroname, ["Total Trip Distance"]
+    Bikestream
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes) by Neighbourhood
+    | project Neighbourhood, ["Total Number of Bikes"]
     ```
 
-    결과에는 분석에 적합하지 않은 빈 값이 포함됩니다.
+    자전거 지점에 이웃에 대한 null 또는 빈 항목이 있는 경우 요약 결과에는 분석에 적합하지 않은 빈 값이 포함됩니다.
 
-1. 여기에 표시된 대로 쿼리를 수정하여 *case* 함수를 *isempty* 및 *isnull* 함수와 함께 사용하여 자치구를 알 수 없는 모든 여행을 후속 작업을 위해 ***Unidentified*** 범주로 그룹화합니다.
+1. 여기에 표시된 대로 쿼리를 수정하여 *case* 함수를 *isempty* 및 *isnull* 함수와 함께 사용하여 지역을 알 수 없는 모든 여행을 후속작업을 위해 ***Unidentified*** 범주로 그룹화합니다.
 
     ```kql
-    Automotive
-    | summarize ["Total Trip Distance"] = sum(trip_distance) by pickup_boroname
-    | project Borough = case(isempty(pickup_boroname) or isnull(pickup_boroname), "Unidentified", pickup_boroname), ["Total Trip Distance"]
+    Bikestream
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes) by Neighbourhood
+    | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), "Unidentified", Neighbourhood), ["Total Number of Bikes"]
     ```
+
+    >**참고**: 이 샘플 데이터 세트는 잘 유지 관리되므로 쿼리 결과에 확인되지 않은 필드가 없을 수 있습니다.
 
 ### KQL을 사용하여 데이터 정렬
 
@@ -126,33 +120,33 @@ KQL(Kusto 쿼리 언어)은 KQL 데이터베이스를 쿼리하는 데 사용할
 1. 다음 쿼리를 시도해 봅니다.
 
     ```kql
-    Automotive
-    | summarize ["Total Trip Distance"] = sum(trip_distance) by pickup_boroname
-    | project Borough = case(isempty(pickup_boroname) or isnull(pickup_boroname), "Unidentified", pickup_boroname), ["Total Trip Distance"]
-    | sort by Borough asc
+    Bikestream
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes) by Neighbourhood
+    | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), "Unidentified", Neighbourhood), ["Total Number of Bikes"]
+    | sort by Neighbourhood asc
     ```
 
 1. 쿼리를 다음과 같이 수정하고 다시 실행합니다. *order by* 연산자가 *sort by*와 동일하게 작동한다는 점에 유의합니다.
 
     ```kql
-    Automotive
-    | summarize ["Total Trip Distance"] = sum(trip_distance) by pickup_boroname
-    | project Borough = case(isempty(pickup_boroname) or isnull(pickup_boroname), "Unidentified", pickup_boroname), ["Total Trip Distance"]
-    | order by Borough asc 
+    Bikestream
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes) by Neighbourhood
+    | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), "Unidentified", Neighbourhood), ["Total Number of Bikes"]
+    | order by Neighbourhood asc
     ```
 
 ### KQL을 사용하여 데이터 필터링
 
 KQL 에서 *where* 절은 데이터를 필터링하는 데 사용됩니다. *where* 절에서는 *and*와 *or* 논리 연산자를 사용하여 조건을 결합할 수 있습니다.
 
-1. 다음 쿼리를 실행하여 Manhatten에서 시작된 여행만 포함하도록 여행 데이터를 필터링합니다.
+1. 다음 쿼리를 실행하여 첼시 지역에 자전거 지점만 포함하도록 자전거 데이터를 필터링합니다.
 
     ```kql
-    Automotive
-    | where pickup_boroname == "Manhattan"
-    | summarize ["Total Trip Distance"] = sum(trip_distance) by pickup_boroname
-    | project Borough = case(isempty(pickup_boroname) or isnull(pickup_boroname), "Unidentified", pickup_boroname), ["Total Trip Distance"]
-    | sort by Borough asc
+    Bikestream
+    | where Neighbourhood == "Chelsea"
+    | summarize ["Total Number of Bikes"] = sum(No_Bikes) by Neighbourhood
+    | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), "Unidentified", Neighbourhood), ["Total Number of Bikes"]
+    | sort by Neighbourhood asc
     ```
 
 ## Transact-SQL을 사용하여 데이터 쿼리
@@ -164,90 +158,90 @@ KQL 데이터베이스는 기본적으로 Transact-SQL을 지원하지 않지만
 1. 쿼리 세트에서 다음 Transact-SQL 쿼리를 추가하고 실행합니다. 
 
     ```sql
-    SELECT TOP 100 * from Automotive
+    SELECT TOP 100 * from Bikestream
     ```
 
 1. 쿼리를 다음과 같이 수정하여 특정 열을 검색합니다.
 
     ```sql
-    SELECT TOP 10 vendor_id, trip_distance
-    FROM Automotive
+    SELECT TOP 10 Street, No_Bikes
+    FROM Bikestream
     ```
 
-1. **trip_distance** 이름을 더 친숙한 이름으로 바꾸는 별칭을 할당하도록 쿼리를 수정합니다.
+1. **No_Empty_Docks** 이름을 더 친숙한 이름으로 바꾸는 별칭을 할당하도록 쿼리를 수정합니다.
 
     ```sql
-    SELECT TOP 10 vendor_id, trip_distance as [Trip Distance]
-    from Automotive
+    SELECT TOP 10 Street, No_Empty_Docks as [Number of Empty Docks]
+    from Bikestream
     ```
 
 ### Transact-SQL을 사용하여 데이터 요약
 
-1. 다음 쿼리를 실행하여 이동한 총 거리를 찾습니다.
+1. 다음 쿼리를 실행하여 사용 가능한 총 자전거 수를 찾습니다.
 
     ```sql
-    SELECT sum(trip_distance) AS [Total Trip Distance]
-    FROM Automotive
+    SELECT sum(No_Bikes) AS [Total Number of Bikes]
+    FROM Bikestream
     ```
 
-1. 총 거리를 픽업 자치구별로 그룹화하도록 쿼리를 수정합니다.
+1. 쿼리를 수정하여 총 자전거 수를 이웃별로 그룹화합니다.
 
     ```sql
-    SELECT pickup_boroname AS Borough, Sum(trip_distance) AS [Total Trip Distance]
-    FROM Automotive
-    GROUP BY pickup_boroname
+    SELECT Neighbourhood, Sum(No_Bikes) AS [Total Number of Bikes]
+    FROM Bikestream
+    GROUP BY Neighbourhood
     ```
 
-1. *CASE* 문을 사용하여 쿼리를 추가로 수정하여 후속 작업을 위해 출발지를 알 수 없는 여행을 ***Unidentified*** 범주로 그룹화합니다. 
+1. *CASE* 문을 사용하여 쿼리를 추가로 수정하여 후속 작업을 위해 출발지를 알 수 없는 자전거 지점을 ***Unidentified*** 범주로 그룹화합니다. 
 
     ```sql
     SELECT CASE
-             WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'Unidentified'
-             ELSE pickup_boroname
-           END AS Borough,
-           SUM(trip_distance) AS [Total Trip Distance]
-    FROM Automotive
+             WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+             ELSE Neighbourhood
+           END AS Neighbourhood,
+           SUM(No_Bikes) AS [Total Number of Bikes]
+    FROM Bikestream
     GROUP BY CASE
-               WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'Unidentified'
-               ELSE pickup_boroname
+               WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+               ELSE Neighbourhood
              END;
     ```
 
 ### Transact-SQL을 사용하여 데이터 정렬
 
-1. 다음 쿼리를 실행하여 자치구별로 그룹화된 결과를 정렬합니다.
+1. 다음 쿼리를 실행하여 지역별로 그룹화된 결과를 정렬합니다.
  
     ```sql
     SELECT CASE
-             WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'unidentified'
-             ELSE pickup_boroname
-           END AS Borough,
-           SUM(trip_distance) AS [Total Trip Distance]
-    FROM Automotive
+             WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+             ELSE Neighbourhood
+           END AS Neighbourhood,
+           SUM(No_Bikes) AS [Total Number of Bikes]
+    FROM Bikestream
     GROUP BY CASE
-               WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'unidentified'
-               ELSE pickup_boroname
-             END
-    ORDER BY Borough ASC;
+               WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+               ELSE Neighbourhood
+             END;
+    ORDER BY Neighbourhood ASC;
     ```
 
 ### Transact-SQL을 사용하여 데이터 필터링
     
-1. 다음 쿼리를 실행하여 자치구가 "Manhattan" 자치구가 있는 행만 결과에 포함되도록 그룹화된 데이터를 필터링합니다.
+1. 다음 쿼리를 실행하여 "Chelsea" 지역만 있는 행만 결과에 포함되도록 그룹화된 데이터를 필터링합니다.
 
     ```sql
     SELECT CASE
-             WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'unidentified'
-             ELSE pickup_boroname
-           END AS Borough,
-           SUM(trip_distance) AS [Total Trip Distance]
-    FROM Automotive
+             WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+             ELSE Neighbourhood
+           END AS Neighbourhood,
+           SUM(No_Bikes) AS [Total Number of Bikes]
+    FROM Bikestream
     GROUP BY CASE
-               WHEN pickup_boroname IS NULL OR pickup_boroname = '' THEN 'unidentified'
-               ELSE pickup_boroname
-             END
-    HAVING Borough = 'Manhattan'
-    ORDER BY Borough ASC;
+               WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
+               ELSE Neighbourhood
+             END;
+    HAVING Neighbourhood = 'Chelsea'
+    ORDER BY Neibourhood ASC;
     ```
 
 ## 리소스 정리
