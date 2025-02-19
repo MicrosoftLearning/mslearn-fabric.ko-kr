@@ -18,6 +18,7 @@ Eventhouse 내에서 데이터는 하나 이상의 KQL 데이터베이스에 저
 
 Fabric에서 데이터를 작업하기 전에 Fabric 용량이 활성화된 작업 영역을 만듭니다.
 
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -29,7 +30,7 @@ Fabric에서 데이터를 작업하기 전에 Fabric 용량이 활성화된 작�
 이제 Fabric 용량을 지원하는 작업 영역이 있으므로 Eventhouse를 만들 수 있습니다.
 
 1. 왼쪽 메뉴 모음에서 **워크로드**를 선택합니다. 그런 다음 **실시간 인텔리전스** 을 선택합니다.
-1. **실시간 인텔리전스** 홈페이지의 *실시간 인텔리전스 샘플 탐색* 타일에서 **열기**를 선택합니다. **RTISample**이라는 이벤트 하우스를 자동으로 만듭니다.
+1. **실시간 인텔리전스** 홈페이지의 **실시간 인텔리전스 샘플 탐색** 타일을 선택합니다. **RTISample**이라는 이벤트 하우스를 자동으로 만듭니다.
 
    ![샘플 데이터가 포함된 새 이벤트 하우스의 스크린샷](./Images/create-eventhouse-sample.png)
 
@@ -221,7 +222,7 @@ KQL 데이터베이스는 기본적으로 Transact-SQL을 지원하지 않지만
     GROUP BY CASE
                WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
                ELSE Neighbourhood
-             END;
+             END
     ORDER BY Neighbourhood ASC;
     ```
 
@@ -239,7 +240,7 @@ KQL 데이터베이스는 기본적으로 Transact-SQL을 지원하지 않지만
     GROUP BY CASE
                WHEN Neighbourhood IS NULL OR Neighbourhood = '' THEN 'Unidentified'
                ELSE Neighbourhood
-             END;
+             END
     HAVING Neighbourhood = 'Chelsea'
     ORDER BY Neibourhood ASC;
     ```
