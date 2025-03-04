@@ -14,7 +14,7 @@ Microsoft Fabric의 실시간 대시보드를 사용하면 KQL(Kusto 쿼리 언�
 
 ## 작업 영역 만들기
 
-Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 테넌트에서 작업 영역을 만들어야 합니다.
+Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 작업 영역을 만들어야 합니다.
 
 1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **실시간 인텔리전스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
@@ -23,16 +23,16 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 
     ![Fabric의 빈 작업 영역 스크린샷.](./Images/new-workspace.png)
 
-## Eventhouse 만들기
+## 이벤트 하우스 만들기
 
 이제 작업 영역이 있으므로 실시간 인텔리전스 솔루션에 필요한 Fabric 항목 만들기를 시작할 수 있습니다. 먼저 Eventhouse를 만들어 보겠습니다.
 
 1. 왼쪽 메뉴 모음에서 **홈**을 선택한 다음 실시간 인텔리전스 홈 페이지에서 새 **Eventhouse**를 만들어, 원하는 고유한 이름을 지정합니다.
-1. 빈 Eventhouse가 새로 표시될 때까지 표시되는 팁이나 프롬프트를 닫습니다.
+1. 빈 이벤트 하우스가 새로 표시될 때까지 표시되는 팁이나 프롬프트를 닫습니다.
 
-    ![새 Eventhouse의 스크린샷](./Images/create-eventhouse.png)
+    ![새 이벤트 하우스의 스크린샷](./Images/create-eventhouse.png)
 
-1. 왼쪽 창의 Eventhouse에는 Eventhouse와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
+1. 왼쪽 창에서 이벤트 하우스에는 이벤트 하우스와 이름이 같은 KQL 데이터베이스가 포함되어 있습니다.
 1. KQL 데이터베이스를 선택하여 확인합니다.
 
 ## Eventstream 만들기
@@ -42,32 +42,32 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 1. KQL 데이터베이스의 기본 페이지에서 **데이터 가져오기**를 선택합니다.
 2. 데이터 원본에 대해 **Eventstream** > **새 Eventstream**을 선택합니다. Eventstream의 이름을 `Bicycle-data`(으)로 지정합니다.
 
-    ![새 eventstream의 스크린샷.](./Images/empty-eventstream.png)
+    ![새 이벤트 스트림의 스크린샷.](./Images/empty-eventstream.png)
 
     작업 영역에서 새 이벤트 스트림 만들기는 몇 분 안에 완료됩니다. 설정되면 Eventstream에 대한 데이터 원본을 선택하도록 자동으로 리디렉션됩니다.
 
 1. **샘플 데이터 사용**을 선택합니다.
 1. 원본 이름을 `Bicycles`(으)로 지정하고 **Bicycles** 샘플 데이터를 선택합니다.
 
-    스트림이 매핑되고 **eventstream 캔버스**에 자동으로 표시됩니다.
+    스트림이 매핑되고 **이벤트 스트림 캔버스**에 자동으로 표시됩니다.
 
-   ![eventstream 캔버스 검토](./Images/real-time-intelligence-eventstream-sourced.png)
+   ![이벤트 스트림 캔버스 검토](./Images/real-time-intelligence-eventstream-sourced.png)
 
 1. **대상 추가** 드롭다운 목록에서 **Eventhouse**를 선택합니다.
 1. **Eventhouse** 창에서 다음 설정 옵션을 구성합니다.
    - **데이터 수집 모드:**: 수집 전 이벤트 처리
    - **대상 이름:**`bikes-table`
    - **작업 영역:***이 연습의 시작 부분에서 만든 작업 영역 선택*
-   - **Eventhouse**: *eventhouse 선택*
+   - **Eventhouse**: *이벤트 하우스 선택*
    - **KQL 데이터베이스:***KQL 데이터베이스 선택*
-   - **대상 테이블:** 이름이 지정된 새 테이블 만들기 `bikes`
-   - **입력 데이터 형식:** JSON
+   - **대상 테이블:** 이름이 지정된 새 테이블 만들기`bikes`
+   - **입력 데이터 식:** JSON
 
    ![Eventstream 대상 설정.](./Images/kql-database-event-processing-before-ingestion.png)
 
 1. **Eventhouse** 창에서 **저장**을 선택합니다. 
 1. **Bicycles-data** 노드의 출력을 **bikes-table** 노드에 연결한 다음 **게시**를 선택합니다.
-1. 데이터 대상이 활성화될 때까지 잠시 1분 정도 기다립니다. 그런 다음, 디자인 캔버스에서 **bikes-table** 노드를 선택하고 아래의 **데이터 미리 보기** 창을 확인하여 수집된 최신 데이터를 확인합니다.
+1. 데이터 대상이 활성화될 때까지 1분 정도 기다립니다. 그런 다음, 디자인 캔버스에서 **bikes-table** 노드를 선택하고 아래의 **데이터 미리 보기** 창을 확인하여 수집된 최신 데이터를 확인합니다.
 
    ![Eventstream의 대상 테이블 스크린샷.](./Images/stream-data-preview.png)
 
