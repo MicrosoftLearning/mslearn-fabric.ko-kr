@@ -10,7 +10,7 @@ lab:
 
 Fabric은 또한 Apache Spark를 지원하므로 코드를 작성하고 실행하여 대규모 데이터를 처리할 수 있습니다. Fabric에서 파이프라인과 Spark 기능을 결합하면, 외부 원본의 데이터를 레이크하우스가 기반으로 하는 OneLake 스토리지로 복사하는 복잡한 데이터 수집 논리를 구현한 다음 분석을 위해 테이블에 로드하기 전에 Spark 코드를 사용하여 사용자 지정 데이터 변환을 수행할 수 있습니다.
 
-이 랩을 완료하는 데 약 **60**분이 걸립니다.
+이 랩을 완료하는 데 약 **45**분이 걸립니다.
 
 > **참고**: 이 연습을 완료하려면 [Microsoft Fabric 평가판](https://learn.microsoft.com/fabric/get-started/fabric-trial)이 필요합니다.
 
@@ -18,7 +18,7 @@ Fabric은 또한 Apache Spark를 지원하므로 코드를 작성하고 실행�
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 ** 데이터 엔지니어링**을 선택합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -29,7 +29,9 @@ Fabric은 또한 Apache Spark를 지원하므로 코드를 작성하고 실행�
 
 이제 작업 영역이 있으므로 데이터를 수집할 데이터 레이크하우스를 만들 차례입니다.
 
-1. **데이터 엔지니어링** 홈페이지에서 원하는 이름의 새 **레이크하우스**를 만듭니다.
+1. 왼쪽 메뉴 모음에서 **만들기**를 선택합니다. *새* 페이지의 *데이터 엔지니어링* 섹션에서 **레이크하우스**를 선택합니다. 원하는 고유한 이름.
+
+    >**참고**: **만들기** 옵션이 사이드바에 고정되지 않은 경우 먼저 줄임표(**...**) 옵션을 선택해야 합니다.
 
     약 1분 정도 지나면 **테이블** 또는 **파일**이 없는 새 레이크하우스가 만들어집니다.
 
