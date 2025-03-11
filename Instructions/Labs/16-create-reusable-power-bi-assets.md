@@ -16,7 +16,7 @@ lab:
 
 이 연습을 시작하려면 먼저 웹 브라우저를 열고 다음 URL을 입력하여 zip 폴더를 다운로드해야 합니다.
 
-`https://github.com/MicrosoftLearning/mslearn-fabric/raw/Main/Allfiles/Labs/16b/16-reusable-assets.zip`
+`https://github.com/MicrosoftLearning/mslearn-fabric/raw/refs/heads/main/Allfiles/Labs/16b/16-reusable-assets.zip`
 
 해당 폴더를 **C:\Users\Student\Downloads\16-reusable-assets** 폴더에 압축을 풉니다.
 
