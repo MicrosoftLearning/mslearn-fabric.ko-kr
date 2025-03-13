@@ -17,7 +17,7 @@ Eventstream은 실시간 이벤트를 캡처, 변환 및 다양한 대상으로 
 
 Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 작업 영역을 만들어야 합니다.
 
-1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
+1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **실시간 인텔리전스**를 선택합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -28,7 +28,7 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 
 이제 작업 영역이 있으므로 실시간 인텔리전스 솔루션에 필요한 Fabric 항목 만들기를 시작할 수 있습니다. 먼저 Eventhouse를 만들어 보겠습니다.
 
-1. 방금 만든 작업 영역에서 **+ 새 항목**을 선택합니다. *새 항목* 창에서 **Eventhouse**를 선택하여 원하는 고유한 이름을 지정합니다.
+1. 왼쪽 메뉴 모음에서 **홈**을 선택한 다음 실시간 인텔리전스 홈 페이지에서 새 **Eventhouse**를 만들어, 원하는 고유한 이름을 지정합니다.
 1. 빈 이벤트 하우스가 새로 표시될 때까지 표시되는 팁이나 프롬프트를 닫습니다.
 
     ![새 이벤트 하우스의 스크린샷](./Images/create-eventhouse.png)
@@ -58,7 +58,8 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 
 ## 대상 추가
 
-1. **이벤트 변환을 선택하거나 대상** 타일을 추가하고 **Eventhouse**를 검색합니다.
+1. **Bicycle-data** 노드 오른쪽에 있는 **+** 아이콘을 사용하여 새 **Eventhouse** 노드를 추가합니다.
+1. 새 Eventhouse 노드에서 *연필* 아이콘을 사용하여 편집합니다.
 1. **Eventhouse** 창에서 다음 설정 옵션을 구성합니다.
    - **데이터 수집 모드:**: 수집 전 이벤트 처리
    - **대상 이름:**`bikes-table`
