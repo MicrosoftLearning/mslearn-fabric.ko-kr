@@ -16,7 +16,7 @@ Microsoft Fabric의 배포 파이프라인을 사용하면 개발, 테스트 및
 
 Fabric 평가판이 사용 설정된 상태에서 3개의 작업 영역을 만듭니다.
 
-1. `https://app.fabric.microsoft.com/home?experience=fabric`의 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)에서 **Microsoft Fabric**을 선택한 다음, 왼쪽 하단 메뉴 모음에서 **데이터 엔지니어링**을 선택합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 2. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 3. 개발이라는 이름의 새 작업 영역을 만들고 Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택합니다.
 4. 1단계와 2단계를 반복하여 테스트 및 프로덕션이라는 이름의 작업 영역을 두 개 더 만듭니다. 작업 영역은 개발, 테스트, 그리고 프로덕션입니다.

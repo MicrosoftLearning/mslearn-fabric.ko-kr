@@ -16,7 +16,7 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 **데이터 웨어하우스**를 선택합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -52,9 +52,11 @@ Microsoft Fabric에서 데이터 웨어하우스는 대규모 분석을 위한 �
 
 ## 창고 만들기
 
-이제 필요한 데이터가 포함된 작업 영역, 레이크하우스, 판매 테이블이 있으므로 데이터 웨어하우스를 만들 차례입니다. Synapse Data Warehouse 홈페이지에는 새 웨어하우스를 만들기 위한 바로 가기가 포함되어 있습니다.
+이제 필요한 데이터가 포함된 작업 영역, 레이크하우스, 판매 테이블이 있으므로 데이터 웨어하우스를 만들 차례입니다.
 
-1. **Data Warehouse** 홈페이지에서 원하는 이름으로 새 **웨어하우스**를 만듭니다.
+1. 왼쪽 메뉴 모음에서 **만들기**를 선택합니다. *새* 페이지의 *데이터 웨어하우스* 섹션에서 **웨어하우스**를 선택합니다. 원하는 고유한 이름.
+
+    >**참고**: **만들기** 옵션이 사이드바에 고정되지 않은 경우 먼저 줄임표(**...**) 옵션을 선택해야 합니다.
 
     1분 정도 지나면 새 웨어하우스가 만들어집니다.
 
