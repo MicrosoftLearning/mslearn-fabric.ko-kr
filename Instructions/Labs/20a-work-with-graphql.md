@@ -16,7 +16,7 @@ GraphQL용 Microsoft Fabric API는 널리 채택되고 친숙한 API 기술을 �
 
 패브릭에서 데이터를 사용하기 전에 패브릭 평가판을 사용하도록 설정된 작업 영역을 만듭니다.
 
-1. [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)에서 확인합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **새 작업 영역**을 선택합니다.
 1. Fabric 용량이 포함된 라이선스 모드(*평가판*, *프리미엄* 또는 *Fabric*)를 선택하여 원하는 이름으로 새 작업 영역을 만듭니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -27,8 +27,10 @@ GraphQL용 Microsoft Fabric API는 널리 채택되고 친숙한 API 기술을 �
 
 작업 영역이 있으므로 이제 SQL 데이터베이스를 만들어야 합니다.
 
-1. Fabric 포털의 왼쪽 패널에서 **+ 새 항목**을 선택합니다.
-1. **데이터 저장** 섹션으로 이동하여 **SQL Database**를 선택합니다.
+1. 왼쪽 메뉴 모음에서 **만들기**를 선택합니다. *새* 페이지의 *데이터베이스* 섹션에서 **SQL 데이터베이스**를 선택합니다.
+
+    >**참고**: **만들기** 옵션이 사이드바에 고정되지 않은 경우 먼저 줄임표(**...**) 옵션을 선택해야 합니다.
+
 1. 데이터베이스 이름으로 **AdventureWorksLT**를 입력하고 **만들기**를 선택합니다.
 1. 데이터베이스를 만든 후에는 **샘플 데이터** 카드에서 데이터베이스로 샘플 데이터를 로드할 수 있습니다.
 

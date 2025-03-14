@@ -18,7 +18,7 @@ lab:
 
 Fabric에서 데이터를 사용하려면 작업 영역을 만들어야 합니다.
 
-1. [Microsoft Fabric](https://app.fabric.microsoft.com) 홈페이지(https://app.fabric.microsoft.com)에서 **데이터 엔지니어링** 환경을 선택합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**(🗇)을 선택한 다음 **새 작업 영역**을 선택합니다.
 1. 새 작업 영역에 이름을 지정하고 **고급** 섹션에서 적절한 라이선스 모드를 선택합니다. Microsoft Fabric 평가판을 시작한 경우 평가판을 선택합니다.
 1. **적용**을 선택하여 빈 작업 영역을 만듭니다.
