@@ -413,7 +413,8 @@ PySpark 코드가 포함된 셀에 SQL 문을 포함시키는 것이 유용하�
 
     ```python
     sqlQuery = "SELECT CAST(YEAR(OrderDate) AS CHAR(4)) AS OrderYear, \
-                    SUM((UnitPrice * Quantity) + Tax) AS GrossRevenue \
+                    SUM((UnitPrice * Quantity) + Tax) AS GrossRevenue, \
+                    COUNT(DISTINCT SalesOrderNumber) AS YearlyCounts \
                 FROM salesorders \
                 GROUP BY CAST(YEAR(OrderDate) AS CHAR(4)) \
                 ORDER BY OrderYear"
@@ -421,7 +422,7 @@ PySpark 코드가 포함된 셀에 SQL 문을 포함시키는 것이 유용하�
     df_spark.show()
     ```
 
-2. 코드를 실행합니다. 이 코드는 연간 수익을 포함하는 Spark DataFrame을 반환합니다. 데이터를 차트로 시각화하기 위해 먼저 matplotlib Python 라이브러리를 사용합니다. 이 라이브러리는 다른 많은 라이브러리의 기반이 되는 핵심 플롯화 라이브러리이며 차트를 만드는 데 많은 유연성을 제공합니다.
+2. 코드를 실행합니다. 연간 매출과 주문 수가 포함된 Spark DataFrame을 반환합니다. 데이터를 차트로 시각화하기 위해 먼저 matplotlib Python 라이브러리를 사용합니다. 이 라이브러리는 다른 많은 라이브러리의 기반이 되는 핵심 플롯화 라이브러리이며 차트를 만드는 데 많은 유연성을 제공합니다.
 
 3. 새 코드 셀을 추가하고 다음 코드를 추가합니다.
 
@@ -509,10 +510,9 @@ PySpark 코드가 포함된 셀에 SQL 문을 포함시키는 것이 유용하�
     ax[0].set_title('Revenue by Year')
 
     # Create a pie chart of yearly order counts on the second axis
-    yearly_counts = df_sales['OrderYear'].value_counts()
-    ax[1].pie(yearly_counts)
+    ax[1].pie(df_sales['YearlyCounts'])
     ax[1].set_title('Orders per Year')
-    ax[1].legend(yearly_counts.keys().tolist())
+    ax[1].legend(df_sales['OrderYear'])
 
     # Add a title to the Figure
     fig.suptitle('Sales Data')
