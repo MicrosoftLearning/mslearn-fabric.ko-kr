@@ -58,7 +58,7 @@ lab:
     ![미리보기 기능 범주에서 사용할 수 있는 옵션의 스크린샷.](./Images/power-bi-enable-tmdl.png)
 
 1. **다른 이름으로 저장**을 선택하고 파일 이름을 지정할 때 드롭다운 메뉴에서 화살표를 선택하여 파일 형식을 선택합니다.
-1. **.*.pbip*** 파일 확장자를 선택한 다음 보고서의 이름을 선택하고 기억할 폴더에 저장합니다.
+1. **.pbip** 파일 확장자를 선택한 다음, 보고서의 이름을 선택하고 기억할 수 있는 폴더에 저장합니다.
 
     ![드롭다운 메뉴가 확장된 다른 이름으로 저장 선택 영역의 스크린샷.](./Images/power-bi-save-file-types.png)
 
@@ -74,10 +74,10 @@ lab:
 
 Power BI Desktop의 변경 사항이 .tmdl 파일에 어떻게 반영되는지 살펴보겠습니다.
 
-1. 데스크톱에서 파일 탐색기를 사용하여 *.*.pbip** 파일을 저장한 폴더로 이동합니다.
+1. 데스크톱에서 파일 탐색기를 사용하여 **.pbip** 파일을 저장한 폴더로 이동합니다.
 1. 다음 항목이 표시됩니다.
 
-    - YourReport.*.pbip* 
+    - YourReport.pbip 파일
     - YourReport.Report 폴더
     - YourReport.SemanticModel 폴더
     - .gitignore Git 소스 파일 무시
@@ -94,7 +94,7 @@ Power BI Desktop의 변경 사항이 .tmdl 파일에 어떻게 반영되는지 �
 
 1. 웹 연결 대화 상자가 됩니다. 기본 라디오 단추를 선택한 상태로 유지합니다. URL 경로로 다음 파일 경로를 입력합니다.
 
-    `"C:\Users\Student\Downloads\16-reusable-assets\us-resident-population-estimates-2020.html"`
+    `C:\Users\Student\Downloads\16-reusable-assets\us-resident-population-estimates-2020.html`
 
 1. **HTML 테이블 > 테이블 2** 상자를 선택한 다음 **데이터 변환**을 선택하여 계속 진행합니다.
 

@@ -16,7 +16,7 @@ Microsoft Fabric의 *모니터링 허브*는 활동을 모니터링할 수 있�
 
 Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 설정된 테넌트에서 작업 영역을 만듭니다.
 
-1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric)(`https://app.fabric.microsoft.com/home?experience=fabric`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
+1. 브라우저에서 [Microsoft Fabric 홈페이지](https://app.fabric.microsoft.com/home?experience=fabric-developer)(`https://app.fabric.microsoft.com/home?experience=fabric-developer`)로 이동하고 Fabric 자격 증명을 사용해 로그인합니다.
 1. 왼쪽 메뉴 모음에서 **작업 영역**을 선택합니다(아이콘은 와 유사함).
 1. 선택한 이름으로 새 작업 영역을 만들고 패브릭 용량(*평가판*, *프리미엄* 또는 *패브릭*)이 포함된 **고급** 섹션에서 라이선스 모드를 선택합니다.
 1. 새 작업 영역이 열리면 비어 있어야 합니다.
@@ -44,12 +44,10 @@ Fabric에서 데이터로 작업하기 전에, Fabric 용량을 사용하도록 
 Microsoft Fabric에서는 데이터 흐름(Gen2)을 사용하여 다양한 원본에서 데이터를 수집할 수 있습니다. 이 연습에서는 데이터 흐름을 사용하여 CSV 파일에서 데이터를 가져와 레이크하우스의 테이블에 데이터를 로드합니다.
 
 1. 레이크하우스의 **홈** 페이지에 있는 **데이터 가져오기** 메뉴에서 **새 데이터 흐름 Gen2**를 선택합니다.
-
-   **데이터 흐름 1**이라는 새 데이터 흐름이 생성되고 열립니다.
+1. 새 데이터 흐름의 이름을 `Get Product Data`(으)로 지정하고 **** 를 선택합니다.
 
     ![새 데이터 흐름의 스크린샷.](./Images/new-data-flow.png)
 
-1. 데이터 흐름 페이지의 왼쪽 상단에서 **데이터 흐름 1**을 선택하여 세부 정보를 확인하고 데이터 흐름의 이름을 **제품 데이터 가져오기**로 변경합니다.
 1. 데이터 흐름 디자이너에서 **텍스트/CSV 파일에서 가져오기**를 선택합니다. 다음으로 데이터 가져오기 마법사를 완료하고 익명 인증을 사용하여 `https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/products.csv`에 연결함으로 데이터 연결을 만듭니다. 마법사를 완료하면 데이터 흐름 디자이너에 다음과 같은 데이터 미리 보기가 표시됩니다.
 
     ![데이터 흐름 쿼리의 스크린샷.](./Images/data-flow-query.png)
@@ -68,15 +66,17 @@ Microsoft Fabric에서는 데이터 흐름(Gen2)을 사용하여 다양한 원�
 
 Microsoft Fabric에서는 Notebooks을 사용하여 Spark 코드를 실행할 수 있습니다.
 
-1. 탐색 허브에서 **홈**을 선택합니다. 데이터 엔지니어링 홈 페이지에서 새 **Notebook**을 만듭니다.
+1. 왼쪽 메뉴 모음에서 **만들기**를 선택합니다. *새* 페이지의 *데이터 엔지니어링* 섹션에서 **Notebook**을 선택합니다.
 
     **Notebook 1**이라는 새 Notebook이 생성되고 열립니다.
 
     ![새 Notebook의 스크린샷.](./Images/new-notebook.png)
 
-1. Notebook 왼쪽 상단에서 **Notebook 1**을 선택해 세부 정보를 확인하고, 이름을 **제품 쿼리**로 변경합니다.
-1. Notebook 편집기의 **탐색기** 창에서 **레이크하우스**를 선택하고 이전에 만든 레이크하우스를 추가합니다.
-1. **제품** 테이블의 **...** 메뉴에서 **데이터 로드** > **Spark**를 선택합니다. 그러면 다음과 같이 Notebook에 새 코드 셀이 추가됩니다.
+1. Notebook 왼쪽 상단에서 **Notebook 1**을 선택해 세부 정보를 확인하고, 이름을 `Query Products`(으)로 변경합니다.
+1. Notebook 편집기의 **탐색기** 창에서, **데이터 항목 추가**를 선택한 다음, **기존 데이터 원본**을 선택합니다.
+1. 이전에 만든 레이크하우스를 추가합니다.
+1. **products** 테이블에 도달할 때까지 레이크하우스 항목을 확장합니다.
+1. **products** 테이블의 **...** 메뉴에서 **데이터 로드** > **Spark**를 선택합니다. 그러면 다음과 같이 Notebook에 새 코드 셀이 추가됩니다.
 
     ![테이블을 쿼리하는 코드가 있는 Notebook의 스크린샷.](./Images/load-spark.png)
 

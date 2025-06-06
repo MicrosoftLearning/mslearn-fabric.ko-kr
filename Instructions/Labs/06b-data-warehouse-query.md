@@ -75,15 +75,6 @@ SQL 쿼리 편집기는 IntelliSense, 코드 완료, 구문 강조 표시, 클�
 
     ```sql
     SELECT TOP 10 
-    G.City, 
-    COUNT(*) AS TotalTrips 
-    FROM dbo.Trip AS T
-    JOIN dbo.Geography AS G
-        ON T.PickupGeographyID=G.GeographyID
-    GROUP BY G.City
-    ORDER BY TotalTrips DESC;
-    
-    SELECT TOP 10 
         G.City, 
         COUNT(*) AS TotalTrips 
     FROM dbo.Trip AS T
